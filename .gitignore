@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+env/
+
+# captures, models, runtime data
+captures/
+models/
+alerts.json
