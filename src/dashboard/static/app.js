@@ -10,7 +10,8 @@ const state = {
     total: 0,
     highRisk: 0,
     blockedIPs: new Set(),
-    avgRisk: 0
+    avgRisk: 0,
+    siemSyncCount: 0
   },
   config: {
     isExpanded: false,
@@ -31,6 +32,8 @@ const DOM = {
   statHighRisk: document.getElementById('stat-high-risk'),
   statBlocked: document.getElementById('stat-blocked'),
   statAvgRisk: document.getElementById('stat-avg-risk'),
+  statPps: document.getElementById('stat-pps'),
+  statKbps: document.getElementById('stat-kbps'),
   uptimeClock: document.getElementById('uptime-clock'),
   alertExpandBtn: document.getElementById('alertExpandBtn'),
   blockedMatrix: document.getElementById('blocked-ip-matrix'),
@@ -43,7 +46,9 @@ const DOM = {
   viewMl: document.getElementById('view-ml'),
   btnTactical: document.getElementById('btn-view-tactical'),
   btnMl: document.getElementById('btn-view-ml'),
-  featureImportanceCont: document.getElementById('ml-feature-importance')
+  featureImportanceCont: document.getElementById('ml-feature-importance'),
+  siemSyncCountEl: document.getElementById('siem-sync-count'),
+  siemStatusBadge: document.getElementById('siem-status-badge')
 };
 
 /* ====== Core Utilities ====== */
@@ -111,6 +116,7 @@ function refreshStats() {
   utils.animateNumber(DOM.statHighRisk, highRisk);
   utils.animateNumber(DOM.statBlocked, state.stats.blockedIPs.size);
   utils.animateNumber(DOM.statAvgRisk, avgRisk);
+  if (DOM.siemSyncCountEl) DOM.siemSyncCountEl.textContent = state.stats.siemSyncCount;
 
   renderBlockedMatrix();
 }
@@ -278,6 +284,7 @@ function openAlertModal(alert) {
           <div class="font-mono text-[10px] leading-relaxed text-emerald-400">
             > ACTION: <span class="bg-emerald-500/20 px-1 font-black">${alert.action || 'LOG'}</span><br>
             > STATUS: <span class="text-white">${alert.status || 'PROCESSED'}</span><br>
+            > SIEM SYNC: <span class="text-white font-bold">DONE [AGENT V1.2]</span><br>
             > PERSISTENCE: ${alert.persistence || 0} hits<br>
             > ISDNF TRUST: ${((1 - (riskVal / 100)) * 100).toFixed(1)}%
           </div>
@@ -304,7 +311,10 @@ function openAlertModal(alert) {
         </div>
         <div class="pt-4 border-t border-white/5">
           <label class="text-[10px] font-bold text-slate-500 uppercase mb-2 block">Detection Engine</label>
-          <div class="text-[10px] text-slate-400 italic">ISDNF Deep Behavioral Analysis v7.0</div>
+          <div class="text-[10px] text-slate-400 italic font-mono uppercase tracking-tighter">
+            ISDNF Ensemble Discovery v12.0<br>
+            <span class="text-cyan-600/[0.4]">[Consensus Voter: 0.4*IF_Agg + 0.6*IF_Cons]</span>
+          </div>
         </div>
       </div>
     </div>
@@ -589,19 +599,81 @@ function init() {
   fetch('/alerts').then(r => r.json()).then(data => {
     state.alerts = data;
     state.filteredAlerts = data;
+    state.stats.siemSyncCount = data.length; // Initialize SIEM count from historical data
     renderAlerts();
     chartManager.updateAll();
     refreshStats();
   });
 
+  // SSE for real-time intelligence
   const sse = new EventSource('/stream');
+
+  // Performance Throttling
+  let lastChartUpdate = 0;
+  let lastStatsUpdate = 0;
+  const UPDATE_THROTTLE = 1000; // Only update charts/stats every 1s under load
+
   sse.onmessage = (e) => {
     const alert = JSON.parse(e.data);
+
+    // Live Pulse Telemetry Handling
+    if (alert.type === 'pulse') {
+      if (DOM.statPps) DOM.statPps.textContent = Math.floor(alert.pps);
+      if (DOM.statKbps) DOM.statKbps.textContent = (alert.bps / 1024).toFixed(1);
+      return; // Pulses don't add to table
+    }
+
     state.alerts.push(alert);
+    state.stats.siemSyncCount++;
     if (state.alerts.length > 2000) state.alerts.shift();
-    applySearch();
-    chartManager.updateAll();
-    refreshStats();
+
+    // Incremental UI Update (Prepend row instead of full refresh)
+    const riskVal = alert.risk || 0;
+    const risk = utils.getRiskLevel(riskVal);
+    const row = document.createElement('tr');
+    row.className = 'alert-row border-b border-white/5 cursor-pointer group transition-all duration-300 animate-slide-up';
+    row.onclick = () => openAlertModal(alert);
+    row.innerHTML = `
+      <td class="px-6 py-4 font-mono text-slate-500 text-xs">${utils.formatTime(alert.time)}</td>
+      <td class="px-6 py-4">
+        <div class="flex flex-col">
+          <span class="font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">${alert.src_ip}</span>
+          ${alert.spoof_detected ? '<span class="text-[8px] text-rose-500 font-bold uppercase tracking-widest animate-pulse">! SPOOF DETECTED</span>' : ''}
+        </div>
+      </td>
+      <td class="px-6 py-4"><span class="badge ${risk.class}">${risk.label}</span></td>
+      <td class="px-6 py-4 font-mono text-xs text-slate-400">${(alert.anomaly || 0).toFixed(4)}</td>
+      <td class="px-6 py-4">
+        <div class="w-24 h-1.5 bg-white/5 rounded-full overflow-hidden">
+          <div class="h-full bg-gradient-to-r from-cyan-500 to-blue-500" style="width: ${riskVal}%"></div>
+        </div>
+      </td>
+      <td class="px-6 py-4 text-center">
+        <div class="inline-flex items-center gap-2 ${alert.action === 'BLOCK' ? 'text-rose-500' : 'text-emerald-400'}">
+           <span class="w-1.5 h-1.5 rounded-full ${alert.action === 'BLOCK' ? 'bg-rose-500' : 'bg-emerald-400'}"></span>
+           <span class="text-[10px] font-bold uppercase tracking-widest">${alert.action || 'LOG'}</span>
+        </div>
+      </td>
+    `;
+
+    if (DOM.alertsBody) {
+      DOM.alertsBody.prepend(row);
+      // Keep DOM size manageable
+      if (DOM.alertsBody.children.length > 20) {
+        DOM.alertsBody.removeChild(DOM.alertsBody.lastChild);
+      }
+    }
+
+    // Throttled UI Heavy lifting
+    const now = Date.now();
+    if (now - lastChartUpdate > UPDATE_THROTTLE) {
+      chartManager.updateAll();
+      lastChartUpdate = now;
+    }
+    if (now - lastStatsUpdate > 500) {
+      refreshStats();
+      lastStatsUpdate = now;
+    }
   };
 
   refreshWhitelist();

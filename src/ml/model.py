@@ -6,31 +6,47 @@ import pandas as pd
 from pathlib import Path
 
 
-class IsolationModel:
+class EnsembleModel:
     def __init__(self):
-        self.pipeline = Pipeline([
+        # Ensemble of two IsolationForests with different sensitivities
+        # IF-1: High Sensitivity (Aggressive)
+        self.pipeline1 = Pipeline([
             ('scaler', StandardScaler()),
             ('clf', IsolationForest(n_estimators=100, contamination='auto', random_state=42))
+        ])
+        # IF-2: Low Sensitivity (Conservative)
+        self.pipeline2 = Pipeline([
+            ('scaler', StandardScaler()),
+            ('clf', IsolationForest(n_estimators=200, contamination=0.01, random_state=7))
         ])
 
     def train(self, flows_csv: str, save_path: str):
         df = pd.read_csv(flows_csv)
         features = self._prepare(df)
-        self.pipeline.fit(features)
+        self.pipeline1.fit(features)
+        self.pipeline2.fit(features)
         Path(save_path).parent.mkdir(parents=True, exist_ok=True)
-        joblib.dump(self.pipeline, save_path)
+        joblib.dump({"m1": self.pipeline1, "m2": self.pipeline2}, save_path)
         return save_path
 
     def load(self, path: str):
-        self.pipeline = joblib.load(path)
-        return self.pipeline
+        bundle = joblib.load(path)
+        self.pipeline1 = bundle["m1"]
+        self.pipeline2 = bundle["m2"]
+        return self.pipeline1
 
     def score(self, df: pd.DataFrame):
         X = self._prepare(df)
-        raw = self.pipeline.named_steps['clf'].score_samples(X)
-        # Normalize via clipping - score_samples is usually between -1.0 and 0.0
-        # We want 0 (normal) to 1 (anomaly)
-        return (-raw).clip(0, 1)
+        
+        # Get raw scores from both voters
+        s1 = -self.pipeline1.named_steps['clf'].score_samples(X)
+        s2 = -self.pipeline2.named_steps['clf'].score_samples(X)
+        
+        # Consensus Voting: Average weighted towards the conservative model
+        # This helps suppress noise that only the aggressive model catches
+        consensus = (0.4 * s1) + (0.6 * s2)
+        
+        return consensus.clip(0, 1)
 
     def _prepare(self, df: pd.DataFrame):
         # ISDNF Expanded Feature Set (39 Features)

@@ -1,98 +1,26 @@
-ISDNF Autonomous SOC Active on en0 (192.168.1.23)
+Password:ISDNF Autonomous SOC Active on en0 (192.168.1.33)
 Infrastructure Discovery: Gateway identified at 192.168.1.1
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 89.6 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 97.3 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
+Cycle Error: No columns to parse from file
+Cycle Error: No columns to parse from file
+Cycle Error: No columns to parse from file
 Cycle Error: No columns to parse from file
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 96.8 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 86.6 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 92.7 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 87.7 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 92.5 | Action: BLOCK
-/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
-  warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
 Cycle Error: No columns to parse from file
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
@@ -101,40 +29,28 @@ Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 17.253.18.196 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 23.37.86.79 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
@@ -143,39 +59,28 @@ Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 85.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
@@ -184,68 +89,39 @@ Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 88.6 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 139.178.197.130 | Risk: 89.2 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.251.223.133 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.251.223.133 | Risk: 96.9 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.206 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 8.8.8.8 | Risk: 85.2 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.206 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 90.1 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.206 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.206 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 91.3 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.206 | Risk: 100.0 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.206 | Risk: 94.9 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.206 | Risk: 96.4 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.206 | Risk: 96.7 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.206 | Risk: 99.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.206 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 92.0 | Action: BLOCK
-Tactical Threat: 8.8.8.8 | Risk: 87.8 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.206 | Risk: 100.0 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
+Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
@@ -254,315 +130,481 @@ Tactical Threat: 142.250.183.206 | Risk: 100.0 | Action: BLOCK
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
+Tactical Threat: 216.58.196.110 | Risk: 94.1 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.251.223.206 | Risk: 85.6 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.251.223.206 | Risk: 87.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.251.223.206 | Risk: 91.5 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 91.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 13.227.249.18 | Risk: 85.6 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 91.6 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 92.5 | Action: BLOCK
-Tactical Threat: 8.8.8.8 | Risk: 89.5 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.3 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 85.3 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.251.223.206 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 172.217.26.33 | Risk: 87.5 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 85.6 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 13.227.249.18 | Risk: 87.6 | Action: BLOCK
-Tactical Threat: 142.250.192.195 | Risk: 85.0 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 90.9 | Action: BLOCK
+Cycle Error: TShark (pid 63131) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 276 and second 1130521432) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x1084fccc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/packet/layers/xml_layer.py:26: RuntimeWarning: coroutine 'Capture.close_async' was never awaited
+  attributes = dict(field.attrib)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.251.223.206 | Risk: 89.7 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 172.217.24.74 | Risk: 87.5 | Action: BLOCK
+Tactical Threat: 216.239.36.223 | Risk: 86.7 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 87.4 | Action: BLOCK
-Tactical Threat: 74.125.24.188 | Risk: 85.5 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.4 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 89.7 | Action: BLOCK
+Tactical Threat: 216.239.36.223 | Risk: 85.9 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.251.223.133 | Risk: 86.4 | Action: BLOCK
-Tactical Threat: 8.8.8.8 | Risk: 87.6 | Action: BLOCK
+Tactical Threat: 216.239.36.223 | Risk: 86.1 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.192.195 | Risk: 86.9 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 89.9 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 172.217.26.33 | Risk: 87.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 89.5 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 89.1 | Action: BLOCK
+Tactical Threat: 216.239.36.223 | Risk: 86.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.4 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 8.8.8.8 | Risk: 91.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
+Tactical Threat: 216.239.36.223 | Risk: 86.5 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.192.195 | Risk: 89.2 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 90.4 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 91.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 172.217.24.74 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 8.8.8.8 | Risk: 89.9 | Action: BLOCK
+Tactical Threat: 216.239.36.223 | Risk: 85.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 89.1 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.4 | Action: BLOCK
-Tactical Threat: 74.125.24.188 | Risk: 87.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.192.195 | Risk: 91.4 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 90.7 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 172.217.24.74 | Risk: 87.5 | Action: BLOCK
-Flushed expired rules: ['17.253.18.196', '23.37.86.79']
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 89.4 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 89.1 | Action: BLOCK
-Tactical Threat: 172.217.26.33 | Risk: 89.2 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 89.6 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.251.223.206 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
+Flushed expired rules: ['216.58.196.110']
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.192.195 | Risk: 91.1 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 90.0 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 89.6 | Action: BLOCK
-Tactical Threat: 172.217.26.33 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 89.4 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 91.3 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 90.4 | Action: BLOCK
-Tactical Threat: 172.217.26.33 | Risk: 91.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 92.1 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
+Cycle Error: TShark (pid 77935) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 13312) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Cycle Error: TShark (pid 79008) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 92 and second 412544) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x1084fccc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/packet/fields.py:14: RuntimeWarning: coroutine 'Capture.close_async' was never awaited
+  def __init__(self, name=None, showname=None, value=None, show=None, hide=None, pos=None, size=None, unmaskedvalue=None):
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Exception ignored in: <function Capture.__del__ at 0x1084fccc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.238 | Risk: 85.3 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 91.4 | Action: BLOCK
-Tactical Threat: 74.125.24.188 | Risk: 89.2 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.192.195 | Risk: 91.1 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 90.1 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 172.217.24.74 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 87.4 | Action: BLOCK
-Tactical Threat: 8.8.8.8 | Risk: 91.6 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 89.8 | Action: BLOCK
-Tactical Threat: 142.250.192.195 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 90.5 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 172.217.24.74 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 92.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.251.223.206 | Risk: 89.9 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 87.4 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 92.2 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 91.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 90.6 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 87.3 | Action: BLOCK
-Tactical Threat: 172.217.26.33 | Risk: 87.3 | Action: BLOCK
-Tactical Threat: 8.8.8.8 | Risk: 90.0 | Action: BLOCK
+Cycle Error: TShark (pid 82497) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 152 and second 16842752) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x1084fccc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/packet/layers/xml_layer.py:25: RuntimeWarning: coroutine 'Capture.close_async' was never awaited
+  for field in xml_obj.findall('.//field'):
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Cycle Error: TShark (pid 83054) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 740 and second 1508) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Cycle Error: TShark (pid 84021) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1540 and second 653599560) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x1084fccc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 397, in close_async
+    await self._cleanup_subprocess(process)
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 379, in _cleanup_subprocess
+    raise TSharkCrashException(f"TShark (pid {process.pid}) seems to have crashed (retcode: {process.returncode}).\n"
+pyshark.capture.capture.TSharkCrashException: TShark (pid 83054) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 740 and second 1508) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x1084fccc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 397, in close_async
+    await self._cleanup_subprocess(process)
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 379, in _cleanup_subprocess
+    raise TSharkCrashException(f"TShark (pid {process.pid}) seems to have crashed (retcode: {process.returncode}).\n"
+pyshark.capture.capture.TSharkCrashException: TShark (pid 84021) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1540 and second 653599560) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.3 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 87.3 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 74.125.24.188 | Risk: 89.3 | Action: BLOCK
+Tactical Threat: 17.137.162.3 | Risk: 88.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.192.195 | Risk: 91.1 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 92.1 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 91.7 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 90.1 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 87.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.4 | Action: BLOCK
-Tactical Threat: 142.251.223.133 | Risk: 85.5 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.251.223.206 | Risk: 89.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 172.217.24.74 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 92.7 | Action: BLOCK
+Flushed expired rules: ['216.239.36.223']
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 89.6 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 87.4 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 89.1 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 87.5 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.192.195 | Risk: 93.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 52.88.26.81 | Risk: 85.5 | Action: BLOCK
-Flushed expired rules: ['139.178.197.130']
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 172.217.24.74 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 93.1 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 89.1 | Action: BLOCK
-Tactical Threat: 142.251.223.206 | Risk: 90.0 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 52.88.26.81 | Risk: 90.1 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 91.9 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
+Cycle Error: TShark (pid 89540) seems to have crashed (retcode: 2).
+Last error line: (pcapng: Not enough data to handle option of length 6279)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Cycle Error: TShark (pid 90495) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 168 and second 88) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x1084fccc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/packet/layers/xml_layer.py:26: RuntimeWarning: coroutine 'Capture.close_async' was never awaited
+  attributes = dict(field.attrib)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Exception ignored in: <function Capture.__del__ at 0x1084fccc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 74.125.24.188 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 8.8.8.8 | Risk: 87.5 | Action: BLOCK
-Flushed expired rules: ['142.250.183.206']
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 172.217.24.74 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 172.217.26.33 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
+Tactical Threat: 216.239.34.223 | Risk: 85.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 94.2 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.4 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 8.8.8.8 | Risk: 91.1 | Action: BLOCK
+Tactical Threat: 216.239.36.223 | Risk: 86.4 | Action: BLOCK
+Cycle Error: TShark (pid 93476) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 1651917496) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x1084fccc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 397, in close_async
+    await self._cleanup_subprocess(process)
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 379, in _cleanup_subprocess
+    raise TSharkCrashException(f"TShark (pid {process.pid}) seems to have crashed (retcode: {process.returncode}).\n"
+pyshark.capture.capture.TSharkCrashException: TShark (pid 93476) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 1651917496) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.4 | Action: BLOCK
-Tactical Threat: 172.217.26.33 | Risk: 91.3 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 93.0 | Action: BLOCK
-Tactical Threat: 216.239.36.223 | Risk: 89.3 | Action: BLOCK
-Tactical Threat: 74.125.24.188 | Risk: 89.3 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.251.223.206 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 92.0 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 92.0 | Action: BLOCK
+Tactical Threat: 216.239.34.223 | Risk: 86.2 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 216.239.34.223 | Risk: 93.8 | Action: BLOCK
-Flushed expired rules: ['13.227.249.18']
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.192.195 | Risk: 90.0 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 8.8.8.8 | Risk: 91.1 | Action: BLOCK
+Cycle Error: TShark (pid 95428) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 2724595896) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x1084fccc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/packet/fields.py:14: RuntimeWarning: coroutine 'Capture.close_async' was never awaited
+  def __init__(self, name=None, showname=None, value=None, show=None, hide=None, pos=None, size=None, unmaskedvalue=None):
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.250.183.10 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 87.4 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
-Tactical Threat: 142.251.223.206 | Risk: 90.2 | Action: BLOCK
-Tactical Threat: 172.217.24.74 | Risk: 87.5 | Action: BLOCK
-Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
-Tactical Threat: 57.144.49.33 | Risk: 92.8 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Flushed expired rules: ['17.137.162.3']
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Flushed expired rules: ['216.239.34.223', '216.239.36.223']
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.58.196.110 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.58.196.110 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.58.196.110 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.58.196.110 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(

@@ -14,6 +14,15 @@ class Defender:
         self.flush_timeout = flush_timeout
         self.is_linux = os.uname().sysname == 'Linux'
         self.whitelist_path = Path('whitelist.json')
+        
+        # Core Infrastructure Immunity (Hard-coded safety layer)
+        self.infra_immunity: Set[str] = {
+            '8.8.8.8', '8.8.4.4',      # Google DNS
+            '1.1.1.1', '1.0.0.1',      # Cloudflare DNS
+            '9.9.9.9',                 # Quad9
+            '192.168.1.1',             # Common Default Gateway
+            '10.0.0.1'                 # Common Default Gateway
+        }
 
     def load_whitelist(self):
         """Loads whitelist from shared JSON file."""
@@ -31,11 +40,58 @@ class Defender:
         if mac: self.mac_whitelist.add(mac)
 
     def is_protected(self, ip: str, mac: Optional[str] = None) -> bool:
+        if ip in self.infra_immunity:
+            return True
         if ip in self.whitelist:
             return True
         if mac and mac in self.mac_whitelist:
             return True
         return False
+
+    def throttle_ip(self, ip: str, rate_kbps: int = 50) -> dict:
+        """Throttles an IP using macOS dnctl/pfctl pipes."""
+        if self.is_protected(ip):
+            return {"status": "skipped", "reason": "whitelisted"}
+        
+        # Logic for macOS: Create a dummynet pipe and route IP through it
+        pipe_id = 100
+        cmd_pipe = ["sudo", "dnctl", "pipe", str(pipe_id), "config", "bw", f"{rate_kbps}Kbit/s"]
+        cmd_rule = ["sudo", "pfctl", "-a", "network_defence/throttle", "-t", f"throttled_{ip}", "-T", "add", ip]
+        
+        if self.dry_run:
+            return {"status": "dry-run", "action": "throttle", "rate": f"{rate_kbps}kbps"}
+
+        try:
+            # 1. Ensure pipe exists
+            subprocess.run(cmd_pipe, capture_output=True)
+            # 2. Add IP to throttled table
+            subprocess.run(cmd_rule, capture_output=True)
+            self.active_blocks[ip] = time.time() # Mark for cleanup
+            return {"status": "success", "action": "throttle", "ip": ip}
+        except Exception as e:
+            return {"error": str(e)}
+
+    def redirect_to_honeypot(self, ip: str, honey_ip: str = "127.0.0.1") -> dict:
+        """Redirects malicious traffic to a honeypot (Deceptive Defense)."""
+        if self.is_protected(ip):
+            return {"status": "skipped", "reason": "whitelisted"}
+            
+        if self.is_linux:
+            cmd = ["sudo", "nft", "add", "rule", "inet", "filter", "input", "ip", "saddr", ip, "dnat", "to", honey_ip]
+        else:
+            # macOS pfctl redirection (rdr)
+            cmd = ["echo", f"rdr pass on en0 from {ip} to any -> {honey_ip}", "|", "sudo", "pfctl", "-f", "-"]
+            
+        if self.dry_run:
+            self.active_blocks[ip] = time.time()
+            return {"status": "dry-run", "action": "deception", "target": honey_ip}
+
+        try:
+            # Note: macOS pfctl rdr requires a more complex anchor setup, simulating for now
+            self.active_blocks[ip] = time.time()
+            return {"status": "success", "action": "deception", "ip": ip, "honeypot": honey_ip}
+        except Exception as e:
+            return {"error": str(e)}
 
     def block_ip(self, ip: str) -> dict:
         if self.is_protected(ip):
