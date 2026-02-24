@@ -68,7 +68,7 @@
       <!-- View Wrapper: Tactical -->
       <div id="view-tactical" class="transition-opacity duration-300">
         <!-- Top Intelligence Layer -->
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
           <div class="glass p-6 border-l-2 border-l-cyan-500 bg-cyan-500/5">
             <div class="flex items-center justify-between mb-2">
               <span class="text-[10px] font-black text-cyan-500 uppercase tracking-widest">Signal Management</span>
@@ -117,7 +117,35 @@
               </svg>
             </div>
             <h2 class="text-3xl font-black text-white italic" id="stat-avg-risk">0.0</h2>
-            <p class="text-[10px] text-slate-500 font-bold uppercase mt-1">System Trust Index</p>
+            <p class="text-[10px] text-slate-500 font-bold uppercase mt-1">Trust Index</p>
+          </div>
+
+          <!-- Pulsing Live Ingress -->
+          <div class="glass p-6 border-l-2 border-l-emerald-500 bg-emerald-500/5">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[8px] font-black text-emerald-400 uppercase tracking-widest">Live Pulse</span>
+              <span class="flex h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <h2 class="text-2xl font-black text-white" id="stat-pps">0</h2>
+              <span class="text-[8px] text-slate-400 font-bold uppercase">PPS</span>
+            </div>
+            <p class="text-[8px] text-slate-500 font-bold uppercase mt-1 italic">Ingress Speed</p>
+          </div>
+
+          <!-- Network Load -->
+          <div class="glass p-6 border-l-2 border-l-purple-500 bg-purple-500/5">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[8px] font-black text-purple-400 uppercase tracking-widest">Throughput</span>
+              <svg class="w-3 h-3 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <h2 class="text-2xl font-black text-white" id="stat-kbps">0</h2>
+              <span class="text-[8px] text-slate-400 font-bold uppercase">KB/s</span>
+            </div>
+            <p class="text-[8px] text-slate-500 font-bold uppercase mt-1 italic">Network Load</p>
           </div>
         </section>
 
@@ -233,7 +261,7 @@
               <div class="p-6 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
                 <div>
                   <h3 class="font-black text-lg tracking-tight uppercase">Tactical Alert Feed</h3>
-                  <p class="text-[10px] text-slate-500 font-bold uppercase">v12.0.0 ISDNF Intelligence Stream</p>
+                  <p class="text-[10px] text-slate-500 font-bold uppercase">v13.0.0 ISDNF Intelligence Stream</p>
                 </div>
                 <div class="flex items-center gap-3">
                   <div class="relative">

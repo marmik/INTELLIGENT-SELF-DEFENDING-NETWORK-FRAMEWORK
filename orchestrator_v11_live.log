@@ -476,3 +476,424 @@ Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
   warnings.warn(
 Tactical Threat: 172.217.26.4 | Risk: 65.6 | Action: BLOCK
 Tactical Threat: 216.239.34.223 | Risk: 68.2 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 20.207.73.82 | Risk: 97.5 | Action: BLOCK
+Tactical Threat: 216.239.34.223 | Risk: 66.6 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+Cycle Error: TShark (pid 30004) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 2303964228) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/packet/layers/xml_layer.py:26: RuntimeWarning: coroutine 'Capture.close_async' was never awaited
+  attributes = dict(field.attrib)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Flushed expired rules: ['216.58.196.110']
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 172.217.26.4 | Risk: 66.1 | Action: BLOCK
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+Cycle Error: TShark (pid 41067) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block length 565770596 is too large (> 134348832))
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Cycle Error: TShark (pid 42090) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 260 and second 84) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Flushed expired rules: ['20.207.73.82']
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/packet/fields.py:88: RuntimeWarning: coroutine 'Capture.close_async' was never awaited
+  obj = str.__new__(cls, main_field.get_default_value(), *args, **kwargs)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 397, in close_async
+    await self._cleanup_subprocess(process)
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 379, in _cleanup_subprocess
+    raise TSharkCrashException(f"TShark (pid {process.pid}) seems to have crashed (retcode: {process.returncode}).\n"
+pyshark.capture.capture.TSharkCrashException: TShark (pid 41067) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block length 565770596 is too large (> 134348832))
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+Cycle Error: TShark (pid 52221) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 100 and second 16778760) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/packet/layers/xml_layer.py:26: RuntimeWarning: coroutine 'Capture.close_async' was never awaited
+  attributes = dict(field.attrib)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Cycle Error: TShark (pid 52979) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1104 and second 498981352) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Flushed expired rules: ['172.217.26.4']
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 397, in close_async
+    await self._cleanup_subprocess(process)
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 379, in _cleanup_subprocess
+    raise TSharkCrashException(f"TShark (pid {process.pid}) seems to have crashed (retcode: {process.returncode}).\n"
+pyshark.capture.capture.TSharkCrashException: TShark (pid 52979) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1104 and second 498981352) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+Cycle Error: TShark (pid 55126) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 108593152) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Cycle Error: TShark (pid 56937) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block length 1756486240 is too large (> 134348832))
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/packet/layers/xml_layer.py:26: RuntimeWarning: coroutine 'Capture.close_async' was never awaited
+  attributes = dict(field.attrib)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Cycle Error: TShark (pid 58865) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1080 and second 942078216) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Cycle Error: TShark (pid 59660) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 68) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/packet/layers/xml_layer.py:26: RuntimeWarning: coroutine 'Capture.close_async' was never awaited
+  attributes = dict(field.attrib)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Cycle Error: TShark (pid 60503) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 2640910792) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Cycle Error: TShark (pid 61387) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1080 and second 100) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/packet/layers/xml_layer.py:26: RuntimeWarning: coroutine 'Capture.close_async' was never awaited
+  attributes = dict(field.attrib)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Cycle Error: TShark (pid 62064) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 128542612) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Cycle Error: TShark (pid 63058) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 734493300) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/packet/fields.py:88: RuntimeWarning: coroutine 'Capture.close_async' was never awaited
+  obj = str.__new__(cls, main_field.get_default_value(), *args, **kwargs)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Cycle Error: TShark (pid 63926) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 2687938396) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Cycle Error: TShark (pid 64596) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 148 and second 67502088) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Cycle Error: TShark (pid 65484) seems to have crashed (retcode: 2).
+Last error line: (pcapng: Not enough data to handle option of length 29973)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/packet/fields.py:88: RuntimeWarning: coroutine 'Capture.close_async' was never awaited
+  obj = str.__new__(cls, main_field.get_default_value(), *args, **kwargs)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 701, in run_until_complete
+    self._check_running()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 637, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 397, in close_async
+    await self._cleanup_subprocess(process)
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 379, in _cleanup_subprocess
+    raise TSharkCrashException(f"TShark (pid {process.pid}) seems to have crashed (retcode: {process.returncode}).\n"
+pyshark.capture.capture.TSharkCrashException: TShark (pid 55126) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 108593152) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 397, in close_async
+    await self._cleanup_subprocess(process)
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 379, in _cleanup_subprocess
+    raise TSharkCrashException(f"TShark (pid {process.pid}) seems to have crashed (retcode: {process.returncode}).\n"
+pyshark.capture.capture.TSharkCrashException: TShark (pid 58865) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1080 and second 942078216) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 397, in close_async
+    await self._cleanup_subprocess(process)
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 379, in _cleanup_subprocess
+    raise TSharkCrashException(f"TShark (pid {process.pid}) seems to have crashed (retcode: {process.returncode}).\n"
+pyshark.capture.capture.TSharkCrashException: TShark (pid 60503) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 2640910792) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 397, in close_async
+    await self._cleanup_subprocess(process)
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 379, in _cleanup_subprocess
+    raise TSharkCrashException(f"TShark (pid {process.pid}) seems to have crashed (retcode: {process.returncode}).\n"
+pyshark.capture.capture.TSharkCrashException: TShark (pid 62064) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 128542612) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+Exception ignored in: <function Capture.__del__ at 0x109cd0cc0>
+Traceback (most recent call last):
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 405, in __del__
+    self.close()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 393, in close
+    self.eventloop.run_until_complete(self.close_async())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 397, in close_async
+    await self._cleanup_subprocess(process)
+  File "/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/pyshark/capture/capture.py", line 379, in _cleanup_subprocess
+    raise TSharkCrashException(f"TShark (pid {process.pid}) seems to have crashed (retcode: {process.returncode}).\n"
+pyshark.capture.capture.TSharkCrashException: TShark (pid 63926) seems to have crashed (retcode: 2).
+Last error line: (pcapng: total block lengths (first 1500 and second 2687938396) don't match)
+Try rerunning in debug mode [ capture_obj.set_debug() ] or try updating tshark.
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Flushed expired rules: ['216.239.34.223']
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+Tactical Threat: 216.239.36.223 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 65.7 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
