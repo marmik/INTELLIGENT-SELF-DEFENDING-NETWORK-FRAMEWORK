@@ -16,7 +16,8 @@ const state = {
   config: {
     isExpanded: false,
     maxVisibleItems: 10,
-    startTime: Date.now()
+    startTime: Date.now(),
+    vectorHistory: [] // History for radar smoothing
   }
 };
 
@@ -48,7 +49,14 @@ const DOM = {
   btnMl: document.getElementById('btn-view-ml'),
   featureImportanceCont: document.getElementById('ml-feature-importance'),
   siemSyncCountEl: document.getElementById('siem-sync-count'),
-  siemStatusBadge: document.getElementById('siem-status-badge')
+  siemStatusBadge: document.getElementById('siem-status-badge'),
+  statCpu: document.getElementById('stat-cpu'),
+  statCpuBar: document.getElementById('stat-cpu-bar'),
+  statRam: document.getElementById('stat-ram'),
+  statRamBar: document.getElementById('stat-ram-bar'),
+  statTemp: document.getElementById('stat-temp'),
+  statTempBar: document.getElementById('stat-temp-bar'),
+  radarChart: document.getElementById('radarChart')
 };
 
 /* ====== Core Utilities ====== */
@@ -371,7 +379,7 @@ const chartManager = {
     try {
       if (typeof Chart === 'undefined') return;
       Object.values(state.charts).forEach(c => c?.destroy());
-      if (state.alerts.length === 0) return;
+      // Proceed even with zero alerts for radar/HUD initialization
 
       // Timeline
       const tCtx = document.getElementById('riskTimelineChart')?.getContext('2d');
@@ -397,23 +405,56 @@ const chartManager = {
         });
       }
 
-      // Radar
+      // Vectored Radar (V16.0 Advanced Vectorization)
       const rCtx = document.getElementById('radarChart')?.getContext('2d');
       if (rCtx) {
+        // Calculate Vector Intensities from last 20 signals
+        const window = state.alerts.slice(-20);
+        let vol = 0, scn = 0, prt = 0, inf = 0, mal = 0;
+
+        if (window.length > 0) {
+          window.forEach(a => {
+            mal += (a.risk || 0);
+            prt += (a.anomaly || 0) * 100;
+            if (a.meta) {
+              scn += (a.meta.unique_ports_count || 1) * 10;
+            }
+          });
+          // Normalize
+          vol = (parseFloat(DOM.statPps?.textContent) || 0) / 10; // Scaling PPS to 0-100
+          inf = (parseFloat(DOM.statCpu?.textContent) || 0);
+
+          mal = Math.min(100, mal / window.length);
+          prt = Math.min(100, prt / window.length);
+          scn = Math.min(100, scn / window.length);
+        }
+
         state.charts.radar = new Chart(rCtx, {
-          type: 'polarArea',
+          type: 'radar',
           data: {
-            labels: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'],
+            labels: ['VOL (FLOOD)', 'SCN (PROBE)', 'PRT (ANOM)', 'INF (LOAD)', 'MAL (RISK)'],
             datasets: [{
-              data: [10, 20, 15, 30, 25, 40, 10, 20].map(v => v + Math.random() * 20),
+              label: 'Vectored Threat',
+              data: [vol, scn, prt, inf, mal],
               backgroundColor: 'rgba(52, 211, 153, 0.2)',
-              borderColor: 'rgba(52, 211, 153, 0.5)',
-              borderWidth: 1
+              borderColor: 'rgba(52, 211, 153, 0.8)',
+              borderWidth: 2,
+              pointBackgroundColor: 'rgba(52, 211, 153, 1)',
+              pointRadius: 3
             }]
           },
           options: {
             ...chartManager.config,
-            scales: { r: { grid: { color: 'rgba(255,255,255,0.05)' }, angleLines: { color: 'rgba(255,255,255,0.05)' }, ticks: { display: false } } }
+            scales: {
+              r: {
+                min: 0,
+                max: 100,
+                grid: { color: 'rgba(255,255,255,0.05)' },
+                angleLines: { color: 'rgba(255,255,255,0.1)' },
+                pointLabels: { color: '#94a3b8', font: { size: 9, weight: 'bold' } },
+                ticks: { display: false }
+              }
+            }
           }
         });
       }
@@ -584,8 +625,23 @@ function toggleTheme() {
   if (state.currentView === 'ml') chartManager.updateMLCharts();
 }
 
+// Stat Hydration (V13.1 Persistence)
+const refreshStatsFromServer = async () => {
+  try {
+    const res = await fetch('/stats');
+    const stats = await res.json();
+    state.stats.siemSyncCount = stats.total_packets || 0;
+    state.stats.highRiskCount = stats.total_alerts || 0;
+    state.stats.blockedCount = stats.blocked_count || 0;
+    refreshStats();
+  } catch (e) {
+    console.error("Stats hydration failed", e);
+  }
+};
+
 function init() {
   initTheme();
+  refreshStatsFromServer();
   setInterval(updateUptime, 100);
 
   if (DOM.searchInput) DOM.searchInput.oninput = applySearch;
@@ -616,10 +672,40 @@ function init() {
   sse.onmessage = (e) => {
     const alert = JSON.parse(e.data);
 
-    // Live Pulse Telemetry Handling
+    // Live Pulse Telemetry Handling (V13.1 Fluidity)
     if (alert.type === 'pulse') {
       if (DOM.statPps) DOM.statPps.textContent = Math.floor(alert.pps);
       if (DOM.statKbps) DOM.statKbps.textContent = (alert.bps / 1024).toFixed(1);
+
+      // Fluid Counter: Detection Vector follows Global Packet Count
+      if (alert.global_total) {
+        state.stats.siemSyncCount = alert.global_total;
+        if (DOM.statTotal) {
+          DOM.statTotal.textContent = alert.global_total.toLocaleString();
+        }
+      }
+
+      // Hardware Telemetry (V14.0)
+      if (alert.cpu_load !== undefined) {
+        if (DOM.statCpu) DOM.statCpu.textContent = alert.cpu_load.toFixed(1);
+        if (DOM.statCpuBar) DOM.statCpuBar.style.width = `${alert.cpu_load}%`;
+      }
+      if (alert.ram_usage !== undefined) {
+        if (DOM.statRam) DOM.statRam.textContent = alert.ram_usage.toFixed(1);
+        if (DOM.statRamBar) DOM.statRamBar.style.width = `${alert.ram_usage}%`;
+      }
+      if (alert.system_temp !== undefined) {
+        if (DOM.statTemp) DOM.statTemp.textContent = alert.system_temp.toFixed(1);
+        if (DOM.statTempBar) DOM.statTempBar.style.width = `${Math.min(alert.system_temp, 100)}%`;
+
+        // Heat Stress Visualization
+        if (alert.system_temp > 65) {
+          document.documentElement.style.setProperty('--glow-color', 'rgba(244, 63, 94, 0.2)');
+        } else {
+          document.documentElement.style.setProperty('--glow-color', 'rgba(6, 182, 212, 0.2)');
+        }
+      }
+
       return; // Pulses don't add to table
     }
 

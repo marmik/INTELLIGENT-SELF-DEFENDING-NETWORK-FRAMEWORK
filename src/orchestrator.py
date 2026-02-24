@@ -11,6 +11,25 @@ from defender import Defender
 import socket
 import struct
 import urllib.request
+import geocoder
+
+GEO_CACHE = {} # IP -> GeoData
+GEO_LOCK = threading.Lock()
+
+def get_ip_geo(ip: str):
+    """Resolves IP to Lat/Lon with local caching for V15.0 Map."""
+    if ip.startswith(('192.168.', '10.', '127.', '172.')):
+        return None
+    with GEO_LOCK:
+        if ip in GEO_CACHE: return GEO_CACHE[ip]
+    try:
+        g = geocoder.ip(ip)
+        if g.ok:
+            data = {"lat": g.latlng[0], "lon": g.latlng[1], "country": g.country}
+            with GEO_LOCK: GEO_CACHE[ip] = data
+            return data
+    except: pass
+    return None
 
 ALERTS_FILE = Path('alerts.json')
 
@@ -52,12 +71,14 @@ class PulseMonitor:
         self.iface = iface
         self.pkt_count = 0
         self.byte_count = 0
+        self.global_pkt_count = 0 # Persistent global count
         self.lock = threading.Lock()
         self.stop_event = threading.Event()
 
     def start(self):
         import subprocess
-        # Use tcpdump for lightweight ingress counting
+        # Seed global count from server stats if possible? 
+        # For now, orchestrator is the source of truth for its own session
         cmd = ["sudo", "tcpdump", "-i", self.iface, "-l", "-n", "-e"]
         self.proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
         threading.Thread(target=self._run, daemon=True).start()
@@ -69,19 +90,35 @@ class PulseMonitor:
             # Each line is a packet. Approximate byte count from 'length' field in -e output
             with self.lock:
                 self.pkt_count += 1
+                self.global_pkt_count += 1
                 if 'length' in line:
                     try:
                         self.byte_count += int(line.split('length ')[1].split(':')[0])
                     except: self.byte_count += 64
 
     def _broadcaster(self):
+        import psutil
         while not self.stop_event.is_set():
             time.sleep(0.2) # Update every 200ms for ultra-low latency
             with self.lock:
+                # Get Hardware Stats (psutil.cpu_percent is non-blocking with interval=None)
+                cpu_load = psutil.cpu_percent(interval=None)
+                ram_usage = psutil.virtual_memory().percent
+                
+                # Heuristic for Temperature on macOS M2 (since direct access is restricted)
+                # We'll use a mix of load and a baseline to simulate the "Stress" feel accurately
+                temp_base = 35.0
+                thermal_load = (cpu_load * 0.4) + (ram_usage * 0.1)
+                system_temp = temp_base + thermal_load
+
                 stats = {
                     "type": "pulse",
                     "pps": self.pkt_count * 5,
                     "bps": self.byte_count * 5,
+                    "global_total": self.global_pkt_count,
+                    "cpu_load": cpu_load,
+                    "ram_usage": ram_usage,
+                    "system_temp": system_temp,
                     "time": time.time()
                 }
                 self.pkt_count = 0
@@ -248,6 +285,9 @@ def run_cycle(interface: str = 'en0', duration: int = 10, model_path: str = 'mod
                     deceiver_res = defender.redirect_to_honeypot(ip)
                     block_res = deceiver_res.get("status", "error")
                 
+                # Geo-Enrichment (V15.0)
+                geo = get_ip_geo(ip)
+                
                 alert = {
                     'time': time.time(),
                     'src_ip': ip,
@@ -258,7 +298,10 @@ def run_cycle(interface: str = 'en0', duration: int = 10, model_path: str = 'mod
                     'breakdown': assessment["breakdown"],
                     'action': action,
                     'status': block_res,
-                    'meta': meta
+                    'meta': meta,
+                    'lat': geo['lat'] if geo else None,
+                    'lon': geo['lon'] if geo else None,
+                    'country': geo['country'] if geo else None
                 }
                 append_alert(alert)
                 log_to_siem(alert)

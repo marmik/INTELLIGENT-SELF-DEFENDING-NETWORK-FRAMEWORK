@@ -13,7 +13,25 @@ clients = []
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 ALERTS = Path('alerts.json')
+STATS_FILE = Path('cumulative_stats.json')
 
+def load_stats():
+    if not STATS_FILE.exists():
+        return {"total_packets": 0, "total_alerts": 0, "blocked_count": 0}
+    try:
+        return json.loads(STATS_FILE.read_text())
+    except:
+        return {"total_packets": 0, "total_alerts": 0, "blocked_count": 0}
+
+def save_stats(stats):
+    try:
+        STATS_FILE.write_text(json.dumps(stats, indent=2))
+    except:
+        pass
+
+@app.route('/stats')
+def get_stats():
+    return jsonify(load_stats())
 
 @app.route('/alerts')
 def alerts():
@@ -30,7 +48,8 @@ def alerts():
 def events():
     """Webhook endpoint to receive structured events (alerts) from orchestrator.
 
-    Expects JSON payload for single alert. Appends to alerts.json and broadcasts to SSE clients.
+    Expects JSON payload. If type is 'pulse', updates global packet stats. 
+    Otherwise, appends to alerts.json and broadcasts to SSE clients.
     """
     try:
         payload = request.get_json(force=True)
@@ -38,15 +57,29 @@ def events():
         return jsonify({'error': 'invalid json'}), 400
     if not payload:
         return jsonify({'error': 'empty payload'}), 400
-    # append to alerts.json
-    arr = []
-    if ALERTS.exists():
-        try:
-            arr = json.loads(ALERTS.read_text())
-        except Exception:
-            arr = []
-    arr.append(payload)
-    ALERTS.write_text(json.dumps(arr, indent=2))
+
+    # Persistence handling
+    if payload.get('type') == 'pulse':
+        stats = load_stats()
+        stats['total_packets'] = payload.get('global_total', stats['total_packets'])
+        save_stats(stats)
+    else:
+        # It's a real alert
+        stats = load_stats()
+        stats['total_alerts'] += 1
+        if payload.get('action') == 'BLOCK' or payload.get('action') == 'DECEIVE':
+            stats['blocked_count'] += 1
+        save_stats(stats)
+
+        # append to alerts.json
+        arr = []
+        if ALERTS.exists():
+            try:
+                arr = json.loads(ALERTS.read_text())
+            except Exception:
+                arr = []
+        arr.append(payload)
+        ALERTS.write_text(json.dumps(arr, indent=2))
 
     # broadcast to clients
     for q in list(clients):
@@ -137,6 +170,8 @@ def reboot():
     try:
         if ALERTS.exists():
             ALERTS.write_text(json.dumps([]))
+        if STATS_FILE.exists():
+            STATS_FILE.write_text(json.dumps({"total_packets": 0, "total_alerts": 0, "blocked_count": 0}, indent=2))
         return jsonify({'status': 'ok', 'message': 'SYSTEM REBOOT SUCCESSFUL'})
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500

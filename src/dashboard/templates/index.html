@@ -7,6 +7,8 @@
   <title>Network Defence | Autonomous SOC</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 
@@ -149,6 +151,62 @@
           </div>
         </section>
 
+        <!-- Phase 14: Infrastructure Intelligence Layer -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <!-- CPU Load -->
+          <div class="glass p-6 border-l-2 border-l-blue-500 bg-blue-500/5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-black text-blue-400 uppercase tracking-widest">CPU Utilization</span>
+              <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z">
+                </path>
+              </svg>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <h2 class="text-3xl font-black text-white italic" id="stat-cpu">0.0</h2>
+              <span class="text-xs text-slate-500 font-bold">%</span>
+            </div>
+            <div class="w-full h-1 bg-white/5 rounded-full mt-3 overflow-hidden">
+              <div id="stat-cpu-bar" class="h-full bg-blue-500 transition-all duration-300" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Memory Flux -->
+          <div class="glass p-6 border-l-2 border-l-cyan-500 bg-cyan-500/5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-black text-cyan-400 uppercase tracking-widest">Memory Flux</span>
+              <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M7 7h10v10H7zM3 3h18v18H3z"></path>
+              </svg>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <h2 class="text-3xl font-black text-white italic" id="stat-ram">0.0</h2>
+              <span class="text-xs text-slate-500 font-bold">%</span>
+            </div>
+            <div class="w-full h-1 bg-white/5 rounded-full mt-3 overflow-hidden">
+              <div id="stat-ram-bar" class="h-full bg-cyan-500 transition-all duration-300" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Thermal Flux -->
+          <div class="glass p-6 border-l-2 border-l-amber-500 bg-amber-500/5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-black text-amber-500 uppercase tracking-widest">Thermal Intel</span>
+              <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <h2 class="text-3xl font-black text-white italic" id="stat-temp">0.0</h2>
+              <span class="text-xs text-slate-500 font-bold">°C</span>
+            </div>
+            <div class="w-full h-1 bg-white/5 rounded-full mt-3 overflow-hidden">
+              <div id="stat-temp-bar" class="h-full bg-amber-500 transition-all duration-300" style="width: 0%"></div>
+            </div>
+          </div>
+        </section>
+
         <!-- Tactical Operation Center -->
         <div class="grid grid-cols-1 xl:grid-cols-4 gap-8 mb-8 items-start">
 
@@ -220,24 +278,47 @@
               </div>
             </div>
 
-            <!-- Radar Mini -->
+            <!-- Advanced Tactical Radar (V16.0) -->
             <div class="glass p-6">
               <h3 class="text-xs font-black uppercase tracking-widest text-emerald-400 mb-6 flex items-center gap-2">
                 <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full shadow-[0_0_8px_rgba(52,211,153,0.5)]"></span>
-                TACTICAL RADAR
+                VECTORED THREAT RADAR
               </h3>
-              <div class="h-[200px] relative flex items-center justify-center">
-                <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+              <div class="h-[280px] relative flex items-center justify-center mb-6">
+                <!-- Background Radar Sweep -->
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
                   <div class="w-full h-full border border-emerald-500/20 rounded-full"></div>
                   <div class="absolute w-[66%] h-[66%] border border-emerald-500/20 rounded-full"></div>
                   <div class="absolute w-[33%] h-[33%] border border-emerald-500/20 rounded-full"></div>
-                  <div class="absolute w-full h-0.5 bg-emerald-500/10 rotate-45"></div>
-                  <div class="absolute w-full h-0.5 bg-emerald-500/10 -rotate-45"></div>
                   <div
-                    class="absolute w-1/2 h-0.5 bg-gradient-to-r from-emerald-500/50 to-transparent origin-left animate-[spin_4s_linear_infinite] left-1/2 top-1/2 opacity-100">
+                    class="absolute w-1/2 h-0.5 bg-gradient-to-r from-emerald-500/50 to-transparent origin-left animate-[spin_4s_linear_infinite] left-1/2 top-1/2">
                   </div>
                 </div>
                 <canvas id="radarChart" class="relative z-10"></canvas>
+              </div>
+
+              <!-- Vector Legend -->
+              <div class="grid grid-cols-5 gap-1 pt-4 border-t border-white/5">
+                <div class="text-center">
+                  <p class="text-[8px] font-black text-slate-500">VOL</p>
+                  <p class="text-[7px] text-emerald-500/50 font-bold leading-tight">FLOOD</p>
+                </div>
+                <div class="text-center">
+                  <p class="text-[8px] font-black text-slate-500">SCN</p>
+                  <p class="text-[7px] text-cyan-500/50 font-bold leading-tight">PROBE</p>
+                </div>
+                <div class="text-center">
+                  <p class="text-[8px] font-black text-slate-500">PRT</p>
+                  <p class="text-[7px] text-purple-500/50 font-bold leading-tight">ANOM</p>
+                </div>
+                <div class="text-center">
+                  <p class="text-[8px] font-black text-slate-500">INF</p>
+                  <p class="text-[7px] text-amber-500/50 font-bold leading-tight">LOAD</p>
+                </div>
+                <div class="text-center">
+                  <p class="text-[8px] font-black text-slate-500">MAL</p>
+                  <p class="text-[7px] text-rose-500/50 font-bold leading-tight">RISK</p>
+                </div>
               </div>
             </div>
           </aside>
