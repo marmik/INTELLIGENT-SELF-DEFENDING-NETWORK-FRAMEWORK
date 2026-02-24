@@ -243,6 +243,10 @@ def run_cycle(interface: str = 'en0', duration: int = 10, model_path: str = 'mod
                     print(f'Throttling Traffic: {ip} | Risk: {r:.1f} | Action: {action}')
                     limit_res = defender.throttle_ip(ip, rate_kbps=100)
                     block_res = limit_res.get("status", "error")
+                elif action == "DECEIVE":
+                    print(f'Active Deception: Redirecting {ip} to Honeypot | Risk: {r:.1f}')
+                    deceiver_res = defender.redirect_to_honeypot(ip)
+                    block_res = deceiver_res.get("status", "error")
                 
                 alert = {
                     'time': time.time(),

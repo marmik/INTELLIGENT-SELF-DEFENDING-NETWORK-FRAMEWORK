@@ -465,3 +465,14 @@ Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
 /Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
   warnings.warn(
 Tactical Threat: 216.239.34.223 | Risk: 68.1 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 216.239.34.223 | Risk: 100.0 | Action: BLOCK
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+/Users/marmik/Network-Defence/.venv/lib/python3.13/site-packages/sklearn/utils/validation.py:2684: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+  warnings.warn(
+Tactical Threat: 172.217.26.4 | Risk: 65.6 | Action: BLOCK
+Tactical Threat: 216.239.34.223 | Risk: 68.2 | Action: BLOCK

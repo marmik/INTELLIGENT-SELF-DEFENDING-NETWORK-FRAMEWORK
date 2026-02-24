@@ -48,9 +48,10 @@ def risk_score(anomaly_score: float, packet_count: int, byte_count: int, persist
 
     final_score = max(0.0, min(100.0, base_score * 100.0))
     
-    # 4. Recommendation Mapping (V12.0 Layered Defense)
+    # 4. Recommendation Mapping (V13.0 Active Deception)
     action = "LOG"
-    if final_score >= 80: action = "BLOCK"
+    if final_score >= 90: action = "DECEIVE"
+    elif final_score >= 75: action = "BLOCK"
     elif final_score >= 45: action = "RATE_LIMIT"
     
     return {
