@@ -1,0 +1,25 @@
+# Keep Docker build context small and avoid shipping runtime artifacts
+.git
+.gitignore
+.github
+.vscode
+
+.venv
+venv
+env
+__pycache__/
+*.pyc
+
+captures/
+models/
+dataset/
+datasets/
+training_captures/
+
+alerts.json
+cumulative_stats.json
+honeypot_interactions.json
+isdnf_siem.log
+dashboard.log
+
+Reports/

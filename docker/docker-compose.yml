@@ -1,8 +1,11 @@
-version: '3.8'
 services:
   dashboard:
-    build: .
+    image: isdnf:local
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
     ports:
-      - "5000:5000"
+      - "5010:5010"
     volumes:
       - ..:/app
+    command: ["python", "-m", "src.dashboard.app", "--host", "0.0.0.0", "--port", "5010"]
