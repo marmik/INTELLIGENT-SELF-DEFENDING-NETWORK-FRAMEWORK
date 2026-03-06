@@ -24,3 +24,7 @@ dashboard.log
 # local/raw datasets (keep out of git due to size)
 dataset/
 training_captures/
+
+
+# Project Reports of Chrotar University of Science and Technology
+Reports/

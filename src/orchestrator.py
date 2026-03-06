@@ -286,7 +286,11 @@ def run_cycle(
     # Global state for adaptive learning (V16.6)
     threat_memory = defaultdict(int)
     ip_stability = defaultdict(int) # Tracks consecutive benign cycles
+    brute_force_cycles = defaultdict(int) # Tracks repeated single-port brute-force pressure
     BASELINE_PATH = "models/benign_baseline.csv"
+    BRUTE_FORCE_BLOCK_AFTER_CYCLES = 3
+    BRUTE_FORCE_MIN_FLOWS = 30
+    BRUTE_FORCE_MIN_PACKETS = 100
     
     # Initialize high-performance model once
     model = HighPerfInferenceEngine()
@@ -412,6 +416,21 @@ def run_cycle(
                     is_private_ip = ipaddress.ip_address(ip).is_private
                 except ValueError:
                     is_private_ip = False
+
+                # Detect repeated one-port web brute-force pressure (e.g., Hydra on 8080).
+                # If deception keeps absorbing it for multiple cycles, escalate to BLOCK.
+                observed_ports_clean = set()
+                for p in observed_ports:
+                    try:
+                        observed_ports_clean.add(int(p))
+                    except Exception:
+                        continue
+                web_focus = any(p in {80, 443, 8080, 8443} for p in observed_ports_clean)
+                single_port_focus = len(observed_ports_clean) <= 2 and web_focus
+                high_request_pressure = (
+                    len(group) >= BRUTE_FORCE_MIN_FLOWS
+                    or pkt >= BRUTE_FORCE_MIN_PACKETS
+                )
                 
                 # Smart Threat Memory - Conditional Persistence & Decay (V16.5)
                 is_infra_ip = meta.get("is_datacenter", False)
@@ -494,6 +513,31 @@ def run_cycle(
                     action = "DECEIVE"
                     r = max(r, 91.0)
 
+                # Track repeated one-port pressure only when traffic is actually
+                # being deceived. This avoids false counters during normal cycles.
+                brute_force_candidate = (
+                    action == "DECEIVE"
+                    and single_port_focus
+                    and (high_request_pressure or persistence >= 2)
+                )
+                if brute_force_candidate:
+                    brute_force_cycles[ip] += 1
+                else:
+                    brute_force_cycles[ip] = max(0, brute_force_cycles[ip] - 1)
+
+                # Anti-flood safety: if a source keeps hitting the same web port with
+                # brute-force-like pressure, stop deceiving and hard-block after N cycles.
+                force_persistent_block = False
+                if action == "DECEIVE" and brute_force_cycles[ip] >= BRUTE_FORCE_BLOCK_AFTER_CYCLES:
+                    action = "BLOCK"
+                    r = max(r, 88.0)
+                    force_persistent_block = True
+                    meta["bruteforce_escalation"] = {
+                        "reason": "single_port_bruteforce",
+                        "cycles": int(brute_force_cycles[ip]),
+                        "ports": sorted(observed_ports_clean),
+                    }
+
                 scan_persistent = (
                     (strong_scan_ioc or rapid_scan_ioc) and (
                         incomplete_handshakes >= 8
@@ -534,7 +578,7 @@ def run_cycle(
                     block_res_dict = defender.block_ip(ip, persistent=True)
                     block_res = block_res_dict.get("status", "error")
                 elif action == "BLOCK":
-                    block_res_dict = defender.block_ip(ip, persistent=scan_persistent)
+                    block_res_dict = defender.block_ip(ip, persistent=(scan_persistent or force_persistent_block))
                     block_res = block_res_dict.get("status", "error")
                 elif action == "DECEIVE":
                     deceptive_res = defender.redirect_to_honeypot(ip)
