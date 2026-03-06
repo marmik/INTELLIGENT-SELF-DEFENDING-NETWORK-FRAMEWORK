@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISDNF - Honeypot Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --glass: rgba(15, 23, 42, 0.8);
+            --border: rgba(255, 255, 255, 0.05);
+            --cyan-glow: 0 0 20px rgba(6, 182, 212, 0.3);
+            --rose-glow: 0 0 20px rgba(244, 63, 94, 0.3);
+        }
+
+        body {
+            background: #020617;
+            color: #f8fafc;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+        }
+
+        .cyber-grid {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        @keyframes pulse-slow {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.1;
+            }
+        }
+    </style>
+</head>
+
+<body class="cyber-grid min-h-screen">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 glass border-b border-white/5 px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <div
+                class="w-10 h-10 bg-cyan-500 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+                <span class="text-white font-black text-xl">D</span>
+            </div>
+            <div>
+                <h1 class="text-lg font-black tracking-tighter uppercase leading-none">Honeypot Intelligence</h1>
+                <p class="text-[10px] font-bold text-cyan-400 tracking-widest uppercase">Decoy Monitoring Node</p>
+            </div>
+        </div>
+        <nav class="flex gap-4">
+            <a href="/"
+                class="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-bold uppercase transition-all">Back
+                to SOC</a>
+        </nav>
+    </header>
+
+    <main class="p-8 max-w-7xl mx-auto space-y-8">
+        <!-- Stats Row -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass p-6 rounded-3xl">
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Active Traps</p>
+                <h2 id="active-traps" class="text-4xl font-black text-white">04</h2>
+                <div class="mt-4 flex gap-1">
+                    <div class="h-1 flex-1 bg-cyan-500 rounded-full"></div>
+                    <div class="h-1 flex-1 bg-cyan-500 rounded-full"></div>
+                    <div class="h-1 flex-1 bg-cyan-500 rounded-full"></div>
+                    <div class="h-1 flex-1 bg-white/10 rounded-full"></div>
+                </div>
+            </div>
+            <div class="glass p-6 rounded-3xl border-l-4 border-rose-500">
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Total Deceptions</p>
+                <h2 id="total-deceptions" class="text-4xl font-black text-rose-500">0</h2>
+                <p class="text-[10px] font-bold text-slate-500 mt-2">TOTAL INTERVENTIONS SINCE BOOT</p>
+            </div>
+            <div class="glass p-6 rounded-3xl border-l-4 border-amber-500">
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Latest Target</p>
+                <h2 id="latest-attacker" class="text-xl font-mono font-bold text-white">WAITING...</h2>
+                <p class="text-[10px] font-bold text-amber-500 mt-2">ACTIVE SESSION TRACKED</p>
+            </div>
+        </div>
+
+        <!-- Captured Feed -->
+        <div class="glass rounded-3xl overflow-hidden">
+            <div class="px-8 py-6 border-b border-white/5 flex justify-between items-center">
+                <h3 class="text-xs font-black uppercase tracking-widest text-slate-400">Captured Attacker Interactions
+                </h3>
+                <span
+                    class="px-2 py-1 rounded bg-rose-500/10 text-rose-500 text-[10px] font-black uppercase animate-pulse">Live
+                    Feed</span>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr
+                            class="text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-white/5">
+                            <th class="px-8 py-4">Timestamp</th>
+                            <th class="px-8 py-4">Attacker IP</th>
+                            <th class="px-8 py-4">Method</th>
+                            <th class="px-8 py-4">Target Path</th>
+                            <th class="px-8 py-4">Action Taken</th>
+                        </tr>
+                    </thead>
+                    <tbody id="honey-feed" class="text-xs">
+                        <!-- Hits will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        async function fetchHoneyStats() {
+            try {
+                const res = await fetch('/stats');
+                const stats = await res.json();
+                document.getElementById('total-deceptions').textContent = stats.honey_hits || 0;
+            } catch (e) { }
+        }
+
+        async function fetchHoneyHits() {
+            try {
+                const res = await fetch('/honeypot/hits');
+                const hits = await res.json();
+                const feed = document.getElementById('honey-feed');
+
+                if (hits.length > 0) {
+                    document.getElementById('latest-attacker').textContent = hits[hits.length - 1].src_ip;
+                }
+
+                feed.innerHTML = hits.reverse().map(hit => `
+                    <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                        <td class="px-8 py-4 font-mono text-slate-500">${new Date(hit.time * 1000).toLocaleTimeString()}</td>
+                        <td class="px-8 py-4 font-black text-rose-400">${hit.src_ip}</td>
+                        <td class="px-8 py-4 font-bold text-white">${hit.method}</td>
+                        <td class="px-8 py-4 font-mono text-slate-300">${hit.path}</td>
+                        <td class="px-8 py-4"><span class="px-2 py-1 bg-emerald-500/10 text-emerald-500 font-bold uppercase text-[10px] rounded">TRAPPED</span></td>
+                    </tr>
+                `).join('');
+            } catch (e) { }
+        }
+
+        // SSE for real-time updates
+        const evtSource = new EventSource("/stream");
+        evtSource.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.type === 'honeypot_hit') {
+                fetchHoneyHits();
+                fetchHoneyStats();
+            }
+        };
+
+        setInterval(fetchHoneyStats, 5000);
+        setInterval(fetchHoneyHits, 3000);
+        fetchHoneyStats();
+        fetchHoneyHits();
+    </script>
+</body>
+
+</html>

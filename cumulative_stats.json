@@ -1,5 +1,15 @@
 {
-  "total_packets": 21755,
-  "total_alerts": 42,
-  "blocked_count": 3
+  "total_packets": 110355,
+  "total_alerts": 51,
+  "blocked_count": 0,
+  "latest_pulse": {
+    "pps": 15,
+    "bps": 1485,
+    "cpu_load": 0.0,
+    "ram_usage": 71.2,
+    "system_temp": 42.120000000000005,
+    "drift_status": "STABLE",
+    "drift_value": 0.0,
+    "last_calib": "N/A"
+  }
 }

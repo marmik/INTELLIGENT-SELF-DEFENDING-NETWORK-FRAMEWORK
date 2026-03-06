@@ -1,192 +1,190 @@
-import pyshark
+import subprocess
 import pandas as pd
 import numpy as np
+import math
 from collections import defaultdict
-from pathlib import Path
+import os
 
-def pcap_to_flows(pcap_path: str, out_csv: str) -> str:
-    """Convert a pcap file into a behavioral flow CSV.
-    
-    Extracts the full 39 ISDNF behavioral features:
-    1. Layer 2: MAC-IP mismatch, Multiple IPs per MAC
-    2. Layer 3: Avg TTL, TTL var, Abnormal TTL count, Fragmentation rate
-    3. Layer 4 TCP: SYN, ACK, FIN, RST, Incomplete handshakes, RST/SYN ratio, Avg window
-    4. UDP: Burst rate, flood indicator
-    5. ICMP: Flood rate, Echo req/res ratio
-    6. Payload: Entropy, Header-to-payload ratio
-    7. Timing: IAT mean/min/max/std, PPS, BPS, burst
-    8. Flow: duration, packets, bytes, avg/min/max size
-    9. Directional: fwd/bwd ratio, one-sided
-    10. Behavioral: unique ports/sec, conn attempt rate, beaconing, out/in ratio, % incomplete handshakes
+# Full CIC-IDS-2017 Feature Set + Hybrid Payload Features
+FEATURE_LIST = [
+    'Destination Port', 'Flow Duration', 'Total Fwd Packets', 'Total Backward Packets',
+    'Total Length of Fwd Packets', 'Total Length of Bwd Packets', 'Fwd Packet Length Max',
+    'Fwd Packet Length Min', 'Fwd Packet Length Mean', 'Fwd Packet Length Std',
+    'Bwd Packet Length Max', 'Bwd Packet Length Min', 'Bwd Packet Length Mean',
+    'Bwd Packet Length Std', 'Flow Bytes/s', 'Flow Packets/s', 'Flow IAT Mean',
+    'Flow IAT Std', 'Flow IAT Max', 'Flow IAT Min', 'Fwd IAT Total', 'Fwd IAT Mean',
+    'Fwd IAT Std', 'Fwd IAT Max', 'Fwd IAT Min', 'Bwd IAT Total', 'Bwd IAT Mean',
+    'Bwd IAT Std', 'Bwd IAT Max', 'Bwd IAT Min', 'Fwd PSH Flags', 'Bwd PSH Flags',
+    'Fwd URG Flags', 'Bwd URG Flags', 'Fwd Header Length', 'Bwd Header Length',
+    'Fwd Packets/s', 'Bwd Packets/s', 'Min Packet Length', 'Max Packet Length',
+    'Packet Length Mean', 'Packet Length Std', 'Packet Length Variance',
+    'FIN Flag Count', 'SYN Flag Count', 'RST Flag Count', 'PSH Flag Count',
+    'ACK Flag Count', 'URG Flag Count', 'CWE Flag Count', 'ECE Flag Count',
+    'Down/Up Ratio', 'Average Packet Size', 'Avg Fwd Segment Size',
+    'Avg Bwd Segment Size', 'Fwd Header Length.1', 'Fwd Avg Bytes/Bulk',
+    'Fwd Avg Packets/Bulk', 'Fwd Avg Bulk Rate', 'Bwd Avg Bytes/Bulk',
+    'Bwd Avg Packets/Bulk', 'Bwd Avg Bulk Rate', 'Subflow Fwd Packets',
+    'Subflow Fwd Bytes', 'Subflow Bwd Packets', 'Subflow Bwd Bytes',
+    'Init_Win_bytes_forward', 'Init_Win_bytes_backward', 'act_data_pkt_fwd',
+    'min_seg_size_forward', 'Active Mean', 'Active Std', 'Active Max',
+    'Active Min', 'Idle Mean', 'Idle Std', 'Idle Max', 'Idle Min'
+]
+
+HYBRID_FEATURES = [
+    'payload_entropy', 'uri_length', 'suspicious_keywords_count', 
+    'http_method_encoded', 'is_encoded_payload', 'payload_len'
+]
+
+def calculate_entropy(data_hex):
+    if not data_hex: return 0.0
+    try:
+        data = bytes.fromhex(data_hex.replace(':', ''))
+        if not data: return 0.0
+        entropy = 0
+        for x in range(256):
+            p_x = float(data.count(x)) / len(data)
+            if p_x > 0:
+                entropy += - p_x * math.log(p_x, 2)
+        return entropy
+    except: return 0.0
+
+def pcap_to_flows(pcap_path, out_csv):
     """
-    cap = pyshark.FileCapture(pcap_path, keep_packets=False)
-    flow_data = defaultdict(lambda: {
-        "ts": [], "len": [], "ttl": [], "tcp_flags": defaultdict(int),
-        "tcp_win": [], "payload_len": [], "hdr_len": [],
-        "is_udp": False, "is_icmp": False, "icmp_req": 0, "icmp_resp": 0,
-        "frag": 0, "src_mac": None, "dst_mac": None
-    })
+    Directional flow extraction with hybrid payload feature augmentation.
+    """
+    fields = [
+        "frame.time_epoch", "ip.src", "ip.dst", "ip.proto", "tcp.srcport", "tcp.dstport",
+        "udp.srcport", "udp.dstport", "frame.len", "ip.ttl", "tcp.flags", "tcp.window_size", "eth.src",
+        "http.request.uri", "http.request.method", "dns.qry.name", "tls.handshake.extensions_server_name", "data.data"
+    ]
     
-    mac_to_ips = defaultdict(set)
-    ip_to_macs = defaultdict(set)
+    cmd = ["tshark", "-r", pcap_path, "-T", "fields"]
+    for f in fields: cmd.extend(["-e", f])
     
-    for pkt in cap:
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        lines = proc.stdout.strip().split('\n')
+    except Exception as e:
+        print(f"Extraction Error: {e}")
+        pd.DataFrame(columns=FEATURE_LIST + HYBRID_FEATURES + ["src_ip", "dst_ip", "src_port", "dst_port", "packet_count", "byte_count", "src_mac", "ttl_mean"]).to_csv(out_csv, index=False)
+        return out_csv
+
+    if not lines or (len(lines) == 1 and not lines[0]):
+        pd.DataFrame(columns=FEATURE_LIST + HYBRID_FEATURES + ["src_ip", "dst_ip", "src_port", "dst_port", "packet_count", "byte_count", "src_mac", "ttl_mean"]).to_csv(out_csv, index=False)
+        return out_csv
+
+    flows = {}
+    suspicious_keywords = ["union", "select", "insert", "delete", "drop", "script", "alert", "eval", "base64", "cmd"]
+
+    for line in lines:
+        parts = line.split('\t')
+        if len(parts) < 11: continue
+        
         try:
-            if 'IP' not in pkt: continue
+            if not parts[1] or not parts[2]: continue
             
-            ts = float(pkt.sniff_timestamp)
-            length = int(pkt.length)
-            src = pkt.ip.src
-            dst = pkt.ip.dst
-            proto = pkt.transport_layer or pkt.highest_layer
-            sport = getattr(pkt[pkt.transport_layer], 'srcport', None) if pkt.transport_layer else None
-            dport = getattr(pkt[pkt.transport_layer], 'dstport', None) if pkt.transport_layer else None
-            ttl = int(pkt.ip.ttl)
-            if 'ETH' in pkt:
-                src_mac = pkt.eth.src
-            else:
-                src_mac = None
+            ts = float(parts[0])
+            src, dst, proto = parts[1], parts[2], parts[3]
+            sport = parts[4] or parts[6] or "0"
+            dport = parts[5] or parts[7] or "0"
+            length = int(parts[8])
+            ttl = int(parts[9]) if parts[9] else 64
+            flags = int(parts[10], 16) if parts[10] else 0
+            win = int(parts[11]) if parts[11] else 0
+            mac = parts[12] if len(parts) > 12 else "00:00:00:00:00:00"
+            
+            # Payload Metadata (Fields 13-17)
+            uri = parts[13] if len(parts) > 13 else ""
+            method = parts[14] if len(parts) > 14 else ""
+            dns_query = parts[15] if len(parts) > 15 else ""
+            sni = parts[16] if len(parts) > 16 else ""
+            payload_hex = parts[17] if len(parts) > 17 else ""
+            
+            key = f"{src}_{dst}_{proto}_{sport}_{dport}"
+            if key not in flows:
+                flows[key] = {
+                    "pkts": [], "src": src, "dst": dst, "proto": proto, 
+                    "sport": int(sport), "dport": int(dport), "mac": mac,
+                    "payload_data": []
+                }
+            
+            f = flows[key]
+            f["pkts"].append({"ts": ts, "len": length, "flags": flags, "win": win, "ttl": ttl})
+            if any([uri, method, dns_query, sni, payload_hex]):
+                f["payload_data"].append({
+                    "uri": uri, "method": method, "dns": dns_query, "sni": sni, "hex": payload_hex
+                })
+        except: continue
 
-            if src_mac:
-                mac_to_ips[src_mac].add(src)
-                ip_to_macs[src].add(src_mac)
-            
-            key = f"{src}-{dst}-{proto}-{sport}-{dport}"
-            f = flow_data[key]
-            
-            f["ts"].append(ts)
-            f["len"].append(length)
-            f["ttl"].append(ttl)
-            
-            hdr_len = 34
-            if 'TCP' in pkt:
-                flags = int(pkt.tcp.flags, 16)
-                if flags & 0x02: f["tcp_flags"]["syn"] += 1
-                if flags & 0x10: f["tcp_flags"]["ack"] += 1
-                if flags & 0x04: f["tcp_flags"]["rst"] += 1
-                if flags & 0x01: f["tcp_flags"]["fin"] += 1
-                if hasattr(pkt.tcp, 'window_size'):
-                    f["tcp_win"].append(int(pkt.tcp.window_size))
-                hdr_len += 20
-            elif 'UDP' in pkt:
-                f["is_udp"] = True
-                hdr_len += 8
-            elif 'ICMP' in pkt or 'ICMPV6' in pkt:
-                f["is_icmp"] = True
-                icmp_type = int(pkt.icmp.type) if 'ICMP' in pkt else -1
-                if icmp_type == 8: f["icmp_req"] += 1
-                if icmp_type == 0: f["icmp_resp"] += 1
-                hdr_len += 8
-                
-            frag = int(pkt.ip.frag_offset) if hasattr(pkt.ip, 'frag_offset') else 0
-            if frag > 0: f["frag"] += 1
-                
-            payload_len = max(0, length - hdr_len)
-            f["payload_len"].append(payload_len)
-            f["hdr_len"].append(hdr_len)
-            
-        except Exception:
-            continue
-            
     rows = []
-    for key, d in flow_data.items():
-        parts = key.split('-')
-        src, dst, proto, sport, dport = parts[0], parts[1], parts[2], parts[3], parts[4]
-        if not d["ts"]: continue
+    for key, data in flows.items():
+        if not data["pkts"]: continue
         
-        ts_arr = np.array(d["ts"])
-        len_arr = np.array(d["len"])
-        ttl_arr = np.array(d["ttl"])
-        win_arr = np.array(d["tcp_win"])
+        pkts = sorted(data["pkts"], key=lambda x: x["ts"])
+        dur = pkts[-1]["ts"] - pkts[0]["ts"]
+        dur_us = int(dur * 1e6)
+        dur_safe = dur if dur > 0 else 1.0
+        all_lens = [p["len"] for p in pkts]
         
-        duration = ts_arr.max() - ts_arr.min()
-        dur_div = duration if duration > 0 else 1.0
+        # --- Payload Feature Engineering ---
+        payload_entropy = 0.0
+        uri_len = 0
+        kw_count = 0
+        method_enc = 0 # 0=None, 1=GET, 2=POST, 3=Other
+        is_encoded = 0
+        total_payload_len = 0
         
-        iat = np.diff(ts_arr) if len(ts_arr) > 1 else np.array([0])
-        pkt_count = len(len_arr)
-        byte_count = np.sum(len_arr)
-        
-        # 1. Layer 2 (2)
-        mac_ip_mismatch = 1 if len(ip_to_macs.get(src, [])) > 1 else 0
-        multiple_ips_per_mac = max([len(mac_to_ips[m]) for m in ip_to_macs.get(src, [])] + [0])
-        
-        # 2. Layer 3 (4)
-        ttl_mean = np.mean(ttl_arr)
-        ttl_var = np.var(ttl_arr)
-        abnorm_ttl = np.sum((ttl_arr < 32) | (ttl_arr > 128))
-        frag_rate = d["frag"] / pkt_count
-        
-        # 3. Layer 4 TCP (7)
-        sc = d["tcp_flags"]["syn"]
-        ac = d["tcp_flags"]["ack"]
-        fc = d["tcp_flags"]["fin"]
-        rc = d["tcp_flags"]["rst"]
-        inc_hs = 1 if sc > 0 and ac == 0 else 0
-        rst_syn_ratio = rc / sc if sc > 0 else 0
-        avg_win = np.mean(win_arr) if len(win_arr) > 0 else 0
-        
-        # 4. UDP (2)
-        udp_burst = pkt_count / dur_div if d["is_udp"] else 0
-        udp_flood = 1 if (d["is_udp"] and pkt_count > 100 and duration < 1.0) else 0
-        
-        # 5. ICMP (2)
-        icmp_flood_rate = pkt_count / dur_div if d["is_icmp"] else 0
-        echo_ratio = d["icmp_req"] / d["icmp_resp"] if d["icmp_resp"] > 0 else d["icmp_req"]
-        
-        # 6. Payload (2)
-        payload_entropy = 0.0 # Standard entropy check too expensive for inline real-time
-        hdr_pay_ratio = np.sum(d["hdr_len"]) / sum(d["payload_len"]) if sum(d["payload_len"]) > 0 else 1.0
-        
-        # 7. Timing (7)
-        iat_mean = np.mean(iat)
-        iat_min = np.min(iat)
-        iat_max = np.max(iat)
-        iat_std = np.std(iat)
-        pps = pkt_count / dur_div
-        bps = byte_count / dur_div
-        burst_det = 1 if pps > 1000 else 0
-        
-        # 8. Flow-level (6)
-        flow_duration = duration
-        total_packets = pkt_count
-        total_bytes = byte_count
-        avg_packet_size = np.mean(len_arr)
-        min_packet_size = np.min(len_arr)
-        max_packet_size = np.max(len_arr)
-        
-        # 9. Directional (2)
-        fwd_bwd_ratio = 1.0
-        one_sided = 1
-        
-        # 10. Behavioral (5)
-        uniq_ports_sec = 1 / dur_div
-        conn_att_rate = sc / dur_div
-        beacon_score = 1 if (iat_std < 0.1 and pkt_count > 10) else 0
-        out_in_ratio = 1.0
-        pct_inc_hs = inc_hs / pkt_count
-        
-        rows.append({
-            'src_ip': src, 'dst_ip': dst, 'protocol': proto, 'src_port': sport, 'dst_port': dport,
-            'packet_count': pkt_count, 'byte_count': byte_count, 'anomaly': 0.0,
-            # -- The 39 Features --
-            'mac_ip_mismatch': mac_ip_mismatch, 'multiple_ips_per_mac': multiple_ips_per_mac,
-            'ttl_mean': ttl_mean, 'ttl_var': ttl_var, 'abnormal_ttl_count': abnorm_ttl, 'fragmentation_rate': frag_rate,
-            'syn_count': sc, 'ack_count': ac, 'fin_count': fc, 'rst_count': rc, 'incomplete_handshakes': inc_hs,
-            'rst_syn_ratio': rst_syn_ratio, 'avg_tcp_window': avg_win,
-            'udp_burst_rate': udp_burst, 'udp_flood_indicator': udp_flood,
-            'icmp_flood_rate': icmp_flood_rate, 'echo_req_res_ratio': echo_ratio,
-            'payload_entropy': payload_entropy, 'header_payload_ratio': hdr_pay_ratio,
-            'iat_mean': iat_mean, 'iat_min': iat_min, 'iat_max': iat_max, 'iat_std': iat_std,
-            'pps': pps, 'bps': bps, 'burst_detection': burst_det,
-            'flow_duration': flow_duration, 'total_packets': total_packets, 'total_bytes': total_bytes,
-            'avg_packet_size': avg_packet_size, 'min_packet_size': min_packet_size, 'max_packet_size': max_packet_size,
-            'fwd_bwd_packet_ratio': fwd_bwd_ratio, 'one_sided_flow': one_sided,
-            'unique_ports_per_sec': uniq_ports_sec, 'connection_attempt_rate': conn_att_rate,
-            'beaconing_score': beacon_score, 'out_in_byte_ratio': out_in_ratio, 'pct_incomplete_handshakes': pct_inc_hs
-        })
+        if data["payload_data"]:
+            combined_payload = ""
+            for p in data["payload_data"]:
+                combined_payload += (p["uri"] + p["method"] + p["dns"] + p["sni"] + p["hex"]).lower()
+                uri_len = max(uri_len, len(p["uri"]))
+                if p["method"] == "GET": method_enc = max(method_enc, 1)
+                elif p["method"] == "POST": method_enc = max(method_enc, 2)
+                elif p["method"]: method_enc = max(method_enc, 3)
+                
+                if p["hex"]:
+                    total_payload_len += len(p["hex"]) // 2
+                    payload_entropy = max(payload_entropy, calculate_entropy(p["hex"]))
+            
+            kw_count = sum(1 for kw in suspicious_keywords if kw in combined_payload)
+            if "%" in combined_payload or "+" in combined_payload: is_encoded = 1
 
-    df = pd.DataFrame(rows)
-    Path(out_csv).parent.mkdir(parents=True, exist_ok=True)
+        base_row = {f: 0 for f in FEATURE_LIST}
+        # Port Normalization: Default to 80 if 0 or missing to prevent diversity inflation
+        dport_final = int(dport) if dport and dport != "0" else 80
+        sport_final = int(sport) if sport and sport != "0" else 443
+        
+        base_row.update({
+            "Destination Port": dport_final, "Flow Duration": dur_us,
+            "Total Fwd Packets": len(pkts), "Total Backward Packets": 0,
+            "Total Length of Fwd Packets": sum(all_lens), "Total Length of Bwd Packets": 0,
+            "Fwd Packet Length Max": max(all_lens), "Fwd Packet Length Min": min(all_lens),
+            "Fwd Packet Length Mean": np.mean(all_lens), "Flow Bytes/s": sum(all_lens) / dur_safe,
+            "Flow Packets/s": len(pkts) / dur_safe,
+            "FIN Flag Count": sum(1 for p in pkts if p["flags"] & 0x01),
+            "SYN Flag Count": sum(1 for p in pkts if p["flags"] & 0x02),
+            "RST Flag Count": sum(1 for p in pkts if p["flags"] & 0x04),
+            "PSH Flag Count": sum(1 for p in pkts if p["flags"] & 0x08),
+            "ACK Flag Count": sum(1 for p in pkts if p["flags"] & 0x10),
+            "URG Flag Count": sum(1 for p in pkts if p["flags"] & 0x20),
+            "Init_Win_bytes_forward": pkts[0]["win"] if pkts else 0,
+        })
+        
+        # Hybrid Features
+        base_row.update({
+            "payload_entropy": payload_entropy, "uri_length": uri_len,
+            "suspicious_keywords_count": kw_count, "http_method_encoded": method_enc,
+            "is_encoded_payload": is_encoded, "payload_len": total_payload_len
+        })
+        
+        base_row.update({
+            "src_ip": data["src"], "dst_ip": data["dst"], "src_port": data["sport"],
+            "dst_port": data["dport"], "packet_count": len(pkts), "byte_count": sum(all_lens),
+            "src_mac": data["mac"], "ttl_mean": np.mean([p["ttl"] for p in pkts])
+        })
+        rows.append(base_row)
+
+    df = pd.DataFrame(rows) if rows else pd.DataFrame(columns=FEATURE_LIST + HYBRID_FEATURES + ["src_ip", "dst_ip", "packet_count"])
     df.to_csv(out_csv, index=False)
-    cap.close()
     return out_csv

@@ -5,23 +5,51 @@ import json
 from pathlib import Path
 from typing import List, Set, Dict, Optional
 
+import ipaddress
+
 class Defender:
-    def __init__(self, dry_run: bool = True, flush_timeout: int = 300):
+    def __init__(
+        self,
+        dry_run: bool = True,
+        flush_timeout: int = 300,
+        iface: str = "en0",
+        honeypot_ip: str = "127.0.0.1",
+        honeypot_port: int = 8080,
+    ):
         self.dry_run = dry_run
         self.whitelist: Set[str] = {'127.0.0.1', '0.0.0.0'}
         self.mac_whitelist: Set[str] = set()
         self.active_blocks: Dict[str, float] = {}  # ip -> timestamp
+        self.persistent_blocks: Set[str] = set()    # IPs blocked until manual flush
         self.flush_timeout = flush_timeout
         self.is_linux = os.uname().sysname == 'Linux'
         self.whitelist_path = Path('whitelist.json')
+        self.iface = iface
+        self.honeypot_ip = honeypot_ip
+        self.honeypot_port = honeypot_port
         
-        # Core Infrastructure Immunity (Hard-coded safety layer)
         self.infra_immunity: Set[str] = {
+            # DNS providers
             '8.8.8.8', '8.8.4.4',      # Google DNS
             '1.1.1.1', '1.0.0.1',      # Cloudflare DNS
             '9.9.9.9',                 # Quad9
-            '192.168.1.1',             # Common Default Gateway
-            '10.0.0.1'                 # Common Default Gateway
+            '192.168.1.1',             # Default Gateway
+            '10.0.0.1',                # Default Gateway
+            '127.0.0.1',               # Loopback
+            
+            # Google Services
+            '216.239.32.0/19',         # covers 216.239.38.223
+            '216.58.192.0/19',
+            '172.217.0.0/16',
+            '142.250.0.0/15',
+            '64.233.160.0/19',
+            '66.102.0.0/20',
+            '66.249.64.0/19',          # Google Bot
+            '72.14.192.0/18',
+            '74.125.0.0/16',
+            '108.177.0.0/17',
+            '173.194.0.0/16',
+            '209.85.128.0/17'
         }
 
     def load_whitelist(self):
@@ -39,13 +67,32 @@ class Defender:
         if ip: self.whitelist.add(ip)
         if mac: self.mac_whitelist.add(mac)
 
-    def is_protected(self, ip: str, mac: Optional[str] = None) -> bool:
-        if ip in self.infra_immunity:
-            return True
-        if ip in self.whitelist:
+    def is_protected(self, ip_str: str, mac: Optional[str] = None) -> bool:
+        # Check direct whitelist and MAC first (fast)
+        if ip_str in self.whitelist:
             return True
         if mac and mac in self.mac_whitelist:
             return True
+            
+        try:
+            ip_obj = ipaddress.ip_address(ip_str)
+            for immune in self.infra_immunity:
+                if '/' in immune:
+                    if ip_obj in ipaddress.ip_network(immune):
+                        return True
+                elif ip_str == immune:
+                    return True
+        except Exception as e:
+            print(f"IP Check Error for {ip_str}: {e}")
+
+        # fall back to the broader CIDR-based detection in ml.utils
+        try:
+            from ml.utils import is_known_infra
+            if is_known_infra(ip_str):
+                return True
+        except ImportError:
+            pass
+
         return False
 
     def throttle_ip(self, ip: str, rate_kbps: int = 50) -> dict:
@@ -55,8 +102,8 @@ class Defender:
         
         # Logic for macOS: Create a dummynet pipe and route IP through it
         pipe_id = 100
-        cmd_pipe = ["sudo", "dnctl", "pipe", str(pipe_id), "config", "bw", f"{rate_kbps}Kbit/s"]
-        cmd_rule = ["sudo", "pfctl", "-a", "network_defence/throttle", "-t", f"throttled_{ip}", "-T", "add", ip]
+        cmd_pipe = ["dnctl", "pipe", str(pipe_id), "config", "bw", f"{rate_kbps}Kbit/s"]
+        cmd_rule = ["pfctl", "-a", "network_defence/throttle", "-t", f"throttled_{ip}", "-T", "add", ip]
         
         if self.dry_run:
             return {"status": "dry-run", "action": "throttle", "rate": f"{rate_kbps}kbps"}
@@ -71,47 +118,75 @@ class Defender:
         except Exception as e:
             return {"error": str(e)}
 
-    def redirect_to_honeypot(self, ip: str, honey_ip: str = "127.0.0.1") -> dict:
+    def _ensure_deception_anchor(self, honey_ip: str, honey_port: int) -> Optional[str]:
+        if self.is_linux:
+            return None
+        rules = (
+            "table <deceived_ips> persist\n"
+            f"rdr pass on {self.iface} proto tcp from <deceived_ips> to any -> {honey_ip} port {honey_port}\n"
+        )
+        cmd = ["pfctl", "-a", "network_defence/deception", "-f", "-"]
+        res = subprocess.run(cmd, input=rules, capture_output=True, text=True)
+        if res.returncode != 0:
+            return res.stderr or "failed to load deception anchor"
+        return None
+
+    def redirect_to_honeypot(self, ip: str, honey_ip: Optional[str] = None, honey_port: Optional[int] = None) -> dict:
         """Redirects malicious traffic to a honeypot (Deceptive Defense)."""
         if self.is_protected(ip):
             return {"status": "skipped", "reason": "whitelisted"}
+
+        target_ip = honey_ip or self.honeypot_ip
+        target_port = honey_port or self.honeypot_port
             
         if self.is_linux:
-            cmd = ["sudo", "nft", "add", "rule", "inet", "filter", "input", "ip", "saddr", ip, "dnat", "to", honey_ip]
+            cmd = ["nft", "add", "rule", "inet", "filter", "input", "ip", "saddr", ip, "dnat", "to", f"{target_ip}:{target_port}"]
         else:
-            # macOS pfctl redirection (rdr)
-            cmd = ["echo", f"rdr pass on en0 from {ip} to any -> {honey_ip}", "|", "sudo", "pfctl", "-f", "-"]
+            err = self._ensure_deception_anchor(target_ip, target_port)
+            if err:
+                return {"status": "failed", "error": err}
+            cmd = ["pfctl", "-a", "network_defence/deception", "-t", "deceived_ips", "-T", "add", ip]
             
         if self.dry_run:
             self.active_blocks[ip] = time.time()
-            return {"status": "dry-run", "action": "deception", "target": honey_ip}
+            return {"status": "dry-run", "action": "deception", "target": f"{target_ip}:{target_port}"}
 
         try:
-            # Note: macOS pfctl rdr requires a more complex anchor setup, simulating for now
+            if self.is_linux:
+                subprocess.run(cmd, capture_output=True, text=True)
+            else:
+                subprocess.run(cmd, capture_output=True, text=True)
+                
             self.active_blocks[ip] = time.time()
-            return {"status": "success", "action": "deception", "ip": ip, "honeypot": honey_ip}
+            return {"status": "success", "action": "deception", "ip": ip, "honeypot": f"{target_ip}:{target_port}"}
         except Exception as e:
             return {"error": str(e)}
 
-    def block_ip(self, ip: str) -> dict:
+    def block_ip(self, ip: str, persistent: bool = False) -> dict:
         if self.is_protected(ip):
             return {"status": "skipped", "reason": "whitelisted"}
         
         if self.is_linux:
-            cmd = ["sudo", "nft", "add", "element", "inet", "filter", "blackhole", f"{{ {ip} }}"]
+            cmd = ["nft", "add", "element", "inet", "filter", "blackhole", f"{{ {ip} }}"]
         else:
             # macOS pfctl logic
-            cmd = ["sudo", "pfctl", "-a", "network_defence", "-t", "blocked_ips", "-T", "add", ip]
+            cmd = ["pfctl", "-a", "network_defence", "-t", "blocked_ips", "-T", "add", ip]
 
         if self.dry_run:
-            self.active_blocks[ip] = time.time()
-            return {"cmd": " ".join(cmd), "status": "dry-run"}
+            if persistent:
+                self.persistent_blocks.add(ip)
+            else:
+                self.active_blocks[ip] = time.time()
+            return {"cmd": " ".join(cmd), "status": "dry-run", "persistent": persistent}
 
         try:
             res = subprocess.run(cmd, capture_output=True, text=True)
             if res.returncode == 0:
-                self.active_blocks[ip] = time.time()
-            return {"cmd": " ".join(cmd), "status": "success" if res.returncode == 0 else "failed", "stderr": res.stderr}
+                if persistent:
+                    self.persistent_blocks.add(ip)
+                else:
+                    self.active_blocks[ip] = time.time()
+            return {"cmd": " ".join(cmd), "status": "success" if res.returncode == 0 else "failed", "stderr": res.stderr, "persistent": persistent}
         except Exception as e:
             return {"error": str(e)}
 
@@ -123,9 +198,9 @@ class Defender:
         for ip in expired:
             if not self.dry_run:
                 if self.is_linux:
-                    cmd = ["sudo", "nft", "delete", "element", "inet", "filter", "blackhole", f"{{ {ip} }}"]
+                    cmd = ["nft", "delete", "element", "inet", "filter", "blackhole", f"{{ {ip} }}"]
                 else:
-                    cmd = ["sudo", "pfctl", "-a", "network_defence", "-t", "blocked_ips", "-T", "delete", ip]
+                    cmd = ["pfctl", "-a", "network_defence", "-t", "blocked_ips", "-T", "delete", ip]
                 subprocess.run(cmd, capture_output=True)
             
             self.active_blocks.pop(ip, None)
@@ -140,9 +215,9 @@ class Defender:
         for ip in ips_to_flush:
             if not self.dry_run:
                 if self.is_linux:
-                    cmd = ["sudo", "nft", "delete", "element", "inet", "filter", "blackhole", f"{{ {ip} }}"]
+                    cmd = ["nft", "delete", "element", "inet", "filter", "blackhole", f"{{ {ip} }}"]
                 else:
-                    cmd = ["sudo", "pfctl", "-a", "network_defence", "-t", "blocked_ips", "-T", "delete", ip]
+                    cmd = ["pfctl", "-a", "network_defence", "-t", "blocked_ips", "-T", "delete", ip]
                 subprocess.run(cmd, capture_output=True)
             self.active_blocks.pop(ip, None)
             flushed.append(ip)

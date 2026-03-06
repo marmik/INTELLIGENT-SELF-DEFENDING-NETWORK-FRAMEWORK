@@ -56,7 +56,27 @@ const DOM = {
   statRamBar: document.getElementById('stat-ram-bar'),
   statTemp: document.getElementById('stat-temp'),
   statTempBar: document.getElementById('stat-temp-bar'),
-  radarChart: document.getElementById('radarChart')
+  radarChart: document.getElementById('radarChart'),
+  driftBadge: document.getElementById('drift-badge'),
+  viewHoneypot: document.getElementById('view-honeypot'),
+  btnHoneypot: document.getElementById('btn-view-honeypot'),
+  honeyFeed: document.getElementById('honey-feed'),
+  honeyTotal: document.getElementById('honey-total-deceptions'),
+  honeyActive: document.getElementById('honey-active-traps'),
+  honeyLatest: document.getElementById('honey-latest-attacker'),
+  honeyDeceiveCount: document.getElementById('honey-deceive-count'),
+  honeyTopAttacker: document.getElementById('honey-top-attacker'),
+  honeyTestBtn: document.getElementById('honeypot-test-btn'),
+  honeyBurstBtn: document.getElementById('honeypot-burst-btn'),
+  mlArch: document.getElementById('ml-arch'),
+  mlDetectMethod: document.getElementById('ml-detect-method'),
+  mlFeatureCount: document.getElementById('ml-feature-count'),
+  mlWeights: document.getElementById('ml-weights'),
+  mlRowCount: document.getElementById('ml-row-count'),
+  fidelityPrecisionText: document.getElementById('fidelity-precision-text'),
+  fidelityPrecisionBar: document.getElementById('fidelity-precision-bar'),
+  fidelityRecallText: document.getElementById('fidelity-recall-text'),
+  fidelityRecallBar: document.getElementById('fidelity-recall-bar')
 };
 
 /* ====== Core Utilities ====== */
@@ -69,8 +89,9 @@ const utils = {
   },
 
   getRiskLevel: (risk) => {
-    if (risk >= 75) return { label: 'CRITICAL', class: 'badge-high', color: '#fb7185' };
-    if (risk >= 40) return { label: 'WARNING', class: 'badge-medium', color: '#fbbf24' };
+    if (risk >= 90) return { label: 'CRITICAL', class: 'badge-high', color: '#f43f5e' };
+    if (risk >= 75) return { label: 'HIGH', class: 'badge-high', color: '#fb7185' };
+    if (risk >= 55) return { label: 'ELEVATED', class: 'badge-medium', color: '#fbbf24' };
     return { label: 'NORMAL', class: 'badge-low', color: '#34d399' };
   },
 
@@ -117,7 +138,7 @@ function updateUptime() {
 
 function refreshStats() {
   const total = state.alerts.length;
-  const highRisk = state.alerts.filter(a => a.risk >= 75).length;
+  const highRisk = state.alerts.filter(a => a.risk >= 70).length;
   const avgRisk = total > 0 ? state.alerts.reduce((sum, a) => sum + (a.risk || 0), 0) / total : 0;
 
   utils.animateNumber(DOM.statTotal, total);
@@ -171,6 +192,10 @@ function renderAlerts() {
     row.style.animation = `slideUp 0.4s ease forwards ${idx * 0.05}s`;
     row.onclick = () => openAlertModal(alert);
 
+    const isBlocked = ['BLOCK', 'CRITICAL_BLOCK', 'DECEIVE'].includes(alert.action);
+    const isWarning = alert.action === 'RATE_LIMIT';
+    const actionLabel = alert.action === 'RATE_LIMIT' ? 'MONITOR' : (alert.action || 'LOG');
+
     row.innerHTML = `
       <td class="px-6 py-4 font-mono text-slate-500 text-xs">${utils.formatTime(alert.time)}</td>
       <td class="px-6 py-4">
@@ -179,24 +204,37 @@ function renderAlerts() {
           ${alert.spoofed ? '<span class="text-[8px] text-rose-500 font-bold uppercase tracking-widest animate-pulse">! SPOOF DETECTED</span>' : ''}
         </div>
       </td>
-      <td class="px-6 py-4">
-        <span class="badge ${risk.class}">${risk.label}</span>
-      </td>
-      <td class="px-6 py-4 font-mono text-xs text-slate-400">${(alert.anomaly || 0).toFixed(4)}</td>
-      <td class="px-6 py-4">
-        <div class="w-24 h-1.5 bg-white/5 rounded-full overflow-hidden">
-          <div class="h-full bg-gradient-to-r from-cyan-500 to-blue-500" style="width: ${riskVal}%"></div>
+      <td class="px-6 py-4 text-center">
+        <div class="flex flex-col items-center">
+            <span class="badge ${risk.class}">${risk.label}</span>
+            <span class="text-[9px] font-black text-white/40 mt-1">${Math.round(riskVal)}%</span>
         </div>
       </td>
       <td class="px-6 py-4 text-center">
-        <div class="inline-flex items-center gap-2 text-emerald-400">
-           <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-           <span class="text-[10px] font-bold uppercase tracking-widest">Active</span>
+         <div class="flex flex-col items-center">
+            <div class="flex items-center gap-1">
+              <span class="font-mono text-[10px] text-cyan-400" title="Calibrated">${(alert.anomaly || 0).toFixed(3)}</span>
+              <span class="text-[8px] text-slate-600">/</span>
+              <span class="font-mono text-[10px] text-slate-500" title="Raw">${(alert.raw_anomaly || 0).toFixed(3)}</span>
+            </div>
+            <div class="w-12 h-1 bg-white/5 rounded-full mt-1 overflow-hidden"><div class="h-full bg-cyan-500" style="width: ${alert.anomaly * 100}%"></div></div>
+         </div>
+      </td>
+      <td class="px-6 py-4 text-center">
+         <div class="flex flex-col items-center">
+            <span class="font-mono text-[10px] text-purple-400">${(alert.payload_score || 0).toFixed(3)}</span>
+            <div class="w-12 h-1 bg-white/5 rounded-full mt-1 overflow-hidden"><div class="h-full bg-purple-500" style="width: ${(alert.payload_score || 0) * 100}%"></div></div>
+         </div>
+      </td>
+      <td class="px-6 py-4 text-center">
+        <div class="inline-flex items-center gap-2 ${isBlocked ? 'text-rose-500' : (isWarning ? 'text-amber-400' : 'text-emerald-400')}">
+           <span class="w-1.5 h-1.5 rounded-full ${isBlocked ? 'bg-rose-500' : (isWarning ? 'bg-amber-400' : 'bg-emerald-400')}"></span>
+            <span class="text-[10px] font-bold uppercase tracking-widest">${actionLabel}</span>
         </div>
       </td>
     `;
     DOM.alertsBody.appendChild(row);
-    if (riskVal >= 75) state.stats.blockedIPs.add(alert.src_ip);
+    if (isBlocked) state.stats.blockedIPs.add(alert.src_ip);
   });
 }
 
@@ -301,27 +339,31 @@ function openAlertModal(alert) {
       
       <div class="space-y-6">
         <div>
-          <label class="text-[10px] font-bold text-slate-500 uppercase mb-3 block">Risk Matrix Factorization</label>
+          <label class="text-[10px] font-bold text-slate-500 uppercase mb-3 block">Hybrid Risk Factorization</label>
           <div class="space-y-3">
             <div class="space-y-1">
-                <div class="flex justify-between text-[8px] font-black uppercase"><span class="text-amber-500">Anomaly Signal</span><span class="text-white">${(breakdown.anomaly * 100).toFixed(0)}%</span></div>
-                <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-amber-500" style="width: ${breakdown.anomaly * 100}%"></div></div>
+                <div class="flex justify-between text-[8px] font-black uppercase"><span class="text-cyan-500">Calibrated Anomaly</span><span class="text-white">${(breakdown.anomaly * 100).toFixed(1)}%</span></div>
+                <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-cyan-500" style="width: ${breakdown.anomaly * 100}%"></div></div>
             </div>
             <div class="space-y-1">
-                <div class="flex justify-between text-[8px] font-black uppercase"><span class="text-cyan-500">Traffic Intensity</span><span class="text-white">${(breakdown.intensity * 100).toFixed(0)}%</span></div>
-                <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-cyan-500" style="width: ${breakdown.intensity * 100}%"></div></div>
+                <div class="flex justify-between text-[8px] font-black uppercase"><span class="text-slate-500">Raw Model Score</span><span class="text-white">${((alert.raw_anomaly || 0) * 100).toFixed(1)}%</span></div>
+                <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-slate-500" style="width: ${(alert.raw_anomaly || 0) * 100}%"></div></div>
             </div>
             <div class="space-y-1">
-                <div class="flex justify-between text-[8px] font-black uppercase"><span class="text-purple-500">Persistence Factor</span><span class="text-white">${(breakdown.persistence * 100).toFixed(0)}%</span></div>
-                <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-purple-500" style="width: ${breakdown.persistence * 100}%"></div></div>
+                <div class="flex justify-between text-[8px] font-black uppercase"><span class="text-purple-500">Payload exploit Probability</span><span class="text-white">${((alert.payload_score || 0) * 100).toFixed(1)}%</span></div>
+                <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-purple-500" style="width: ${(alert.payload_score || 0) * 100}%"></div></div>
+            </div>
+            <div class="space-y-1">
+                <div class="flex justify-between text-[8px] font-black uppercase"><span class="text-cyan-500">Persistence Weight</span><span class="text-white">${(breakdown.persistence * 100).toFixed(0)}%</span></div>
+                <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-cyan-500" style="width: ${breakdown.persistence * 100}%"></div></div>
             </div>
           </div>
         </div>
         <div class="pt-4 border-t border-white/5">
           <label class="text-[10px] font-bold text-slate-500 uppercase mb-2 block">Detection Engine</label>
           <div class="text-[10px] text-slate-400 italic font-mono uppercase tracking-tighter">
-            ISDNF Ensemble Discovery v12.0<br>
-            <span class="text-cyan-600/[0.4]">[Consensus Voter: 0.4*IF_Agg + 0.6*IF_Cons]</span>
+            ISDNF HYBRID ENSEMBLE v17<br>
+            <span class="text-cyan-600/[0.4]">[Inference: calibrated DNN + HGB blend]</span>
           </div>
         </div>
       </div>
@@ -387,7 +429,7 @@ const chartManager = {
         state.charts.timeline = new Chart(tCtx, {
           type: 'line',
           data: {
-            labels: state.alerts.slice(-40).map((_, i) => i),
+            labels: state.alerts.slice(-40).map(a => utils.formatTime(a.time)),
             datasets: [{
               data: state.alerts.slice(-40).map(a => a.risk || 0),
               borderColor: '#22d3ee',
@@ -570,6 +612,12 @@ const chartManager = {
         const currentLoss = (100 - currentConv).toFixed(3);
         convScore.textContent = currentConv + '%';
         convLoss.textContent = currentLoss;
+
+        // Dynamic labels update based on stats
+        if (state.mlStats && state.mlStats.status === 'HYBRID_ACTIVE') {
+          const archLabel = document.querySelector('#view-ml h3 + div span.italic');
+          if (archLabel) archLabel.textContent = 'Hybrid v16.2 (DNN+PL)';
+        }
       }
     } catch (e) { console.error('ML chart update failed', e); }
   }
@@ -591,24 +639,145 @@ function switchView(view) {
   if (view === 'tactical') {
     if (DOM.viewTactical) DOM.viewTactical.classList.remove('hidden');
     if (DOM.viewMl) DOM.viewMl.classList.add('hidden');
+    if (DOM.viewHoneypot) DOM.viewHoneypot.classList.add('hidden');
     if (DOM.btnTactical) DOM.btnTactical.className = 'px-6 py-2 rounded-lg text-xs font-black uppercase transition-all bg-cyan-500 text-black shadow-lg shadow-cyan-500/20';
     if (DOM.btnMl) DOM.btnMl.className = 'px-6 py-2 rounded-lg text-xs font-black uppercase transition-all text-slate-400 hover:text-white';
+    if (DOM.btnHoneypot) DOM.btnHoneypot.className = 'px-6 py-2 rounded-lg text-xs font-black uppercase transition-all text-slate-400 hover:text-white';
     chartManager.updateAll();
-  } else {
+  } else if (view === 'ml') {
     if (DOM.viewTactical) DOM.viewTactical.classList.add('hidden');
     if (DOM.viewMl) DOM.viewMl.classList.remove('hidden');
+    if (DOM.viewHoneypot) DOM.viewHoneypot.classList.add('hidden');
     if (DOM.btnMl) DOM.btnMl.className = 'px-6 py-2 rounded-lg text-xs font-black uppercase transition-all bg-primary text-white shadow-lg shadow-cyan-500/20';
     if (DOM.btnTactical) DOM.btnTactical.className = 'px-6 py-2 rounded-lg text-xs font-black uppercase transition-all text-slate-400 hover:text-white';
+    if (DOM.btnHoneypot) DOM.btnHoneypot.className = 'px-6 py-2 rounded-lg text-xs font-black uppercase transition-all text-slate-400 hover:text-white';
     fetchMLStats();
+  } else if (view === 'honeypot') {
+    if (DOM.viewTactical) DOM.viewTactical.classList.add('hidden');
+    if (DOM.viewMl) DOM.viewMl.classList.add('hidden');
+    if (DOM.viewHoneypot) DOM.viewHoneypot.classList.remove('hidden');
+    if (DOM.btnHoneypot) DOM.btnHoneypot.className = 'px-6 py-2 rounded-lg text-xs font-black uppercase transition-all bg-rose-500 text-white shadow-lg shadow-rose-500/20';
+    if (DOM.btnTactical) DOM.btnTactical.className = 'px-6 py-2 rounded-lg text-xs font-black uppercase transition-all text-slate-400 hover:text-white';
+    if (DOM.btnMl) DOM.btnMl.className = 'px-6 py-2 rounded-lg text-xs font-black uppercase transition-all text-slate-400 hover:text-white';
+    refreshHoneypotView();
   }
 }
+
+async function refreshHoneypotView() {
+  const [hits, summary] = await Promise.all([fetchHoneypotLogs(), fetchHoneypotSummary()]);
+  if (DOM.honeyFeed) {
+    DOM.honeyFeed.innerHTML = hits.slice().reverse().map(hit => `
+        <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+            <td class="px-8 py-4 font-mono text-slate-500">${utils.formatTime(hit.time)}</td>
+        <td class="px-8 py-4 font-black text-rose-400">${hit.src_ip || 'unknown'}</td>
+        <td class="px-8 py-4 font-mono text-slate-400">${hit.socket_ip || '-'}</td>
+            <td class="px-8 py-4 font-bold text-white">${hit.method || 'N/A'}</td>
+            <td class="px-8 py-4 font-mono text-slate-300">${hit.path || '/'}</td>
+            <td class="px-8 py-4"><span class="px-2 py-1 bg-emerald-500/10 text-emerald-500 font-bold uppercase text-[10px] rounded">TRAPPED</span></td>
+        </tr>
+    `).join('');
+  }
+  if (hits.length > 0 && DOM.honeyLatest) {
+    DOM.honeyLatest.textContent = hits[hits.length - 1].src_ip;
+  }
+  if (DOM.honeyTotal) {
+    DOM.honeyTotal.textContent = Number(summary?.total_hits || hits.length || 0);
+  }
+  if (DOM.honeyDeceiveCount) {
+    DOM.honeyDeceiveCount.textContent = Number(summary?.deceive_alerts || 0);
+  }
+  if (DOM.honeyTopAttacker) {
+    DOM.honeyTopAttacker.textContent = summary?.top_attacker_ip || 'N/A';
+  }
+  if (DOM.honeyActive) {
+    DOM.honeyActive.textContent = '1';
+  }
+}
+
 
 async function fetchMLStats() {
   try {
     const res = await fetch('/ml/stats');
     state.mlStats = await res.json();
+    const model = state.mlStats.model || {};
+    const rows = model.rows || {};
+    const weights = model.ensemble_weights || {};
+    const fidelity = state.mlStats.fidelity || {};
+
+    if (DOM.mlArch) DOM.mlArch.textContent = (model.name || 'HYBRID ACTIVE').toUpperCase();
+    if (DOM.mlDetectMethod) DOM.mlDetectMethod.textContent = (model.detection_method || 'Behavioral anomaly scoring').toUpperCase();
+    if (DOM.mlFeatureCount) DOM.mlFeatureCount.textContent = `${Number(model.feature_count || 0)} flow features`;
+    if (DOM.mlWeights) {
+      const dnnW = Number(weights.dnn || 0).toFixed(3);
+      const hgbW = Number(weights.hgb || 0).toFixed(3);
+      DOM.mlWeights.textContent = `DNN ${dnnW} / HGB ${hgbW}`;
+    }
+    if (DOM.mlRowCount) {
+      DOM.mlRowCount.textContent = `train: ${Number(rows.train || 0).toLocaleString()} | val: ${Number(rows.val || 0).toLocaleString()} | test: ${Number(rows.test || 0).toLocaleString()}`;
+    }
+
+    const p = Number(fidelity.precision || 0);
+    const r = Number(fidelity.recall || 0);
+    if (DOM.fidelityPrecisionText) DOM.fidelityPrecisionText.textContent = p.toFixed(3);
+    if (DOM.fidelityRecallText) DOM.fidelityRecallText.textContent = r.toFixed(3);
+    if (DOM.fidelityPrecisionBar) DOM.fidelityPrecisionBar.style.width = `${Math.max(0, Math.min(100, p * 100))}%`;
+    if (DOM.fidelityRecallBar) DOM.fidelityRecallBar.style.width = `${Math.max(0, Math.min(100, r * 100))}%`;
+
     chartManager.updateMLCharts();
   } catch (e) { console.error('ML stats fetch failed', e); }
+}
+
+async function fetchHoneypotLogs() {
+  try {
+    const res = await fetch('/honeypot/hits');
+    const logs = await res.json();
+    return logs;
+  } catch (e) { return []; }
+}
+
+async function fetchHoneypotSummary() {
+  try {
+    const res = await fetch('/honeypot/summary');
+    return await res.json();
+  } catch (e) {
+    return {};
+  }
+}
+
+async function triggerHoneypotTest() {
+  try {
+    const res = await fetch('/honeypot/test', { method: 'POST' });
+    if (!res.ok) throw new Error('test endpoint failed');
+    await refreshHoneypotView();
+    utils.showToast('SYNTHETIC HONEYPOT HIT GENERATED', 'info');
+  } catch (e) {
+    utils.showToast('HONEYPOT TEST FAILED', 'error');
+  }
+}
+
+async function triggerHoneypotBurst() {
+  try {
+    const res = await fetch('/honeypot/test-burst', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ count: 5 })
+    });
+    if (!res.ok) throw new Error('burst endpoint failed');
+    await refreshHoneypotView();
+    utils.showToast('5 SYNTHETIC HONEYPOT HITS GENERATED', 'info');
+  } catch (e) {
+    utils.showToast('HONEYPOT BURST TEST FAILED', 'error');
+  }
+}
+
+async function purgeData() {
+  if (!confirm('CRITICAL: This will wipe ALL historical alerts, stats, and honeypot logs. Proceed?')) return;
+  try {
+    const res = await fetch('/purge', { method: 'POST' });
+    if (res.ok) {
+      window.location.reload();
+    }
+  } catch (e) { console.error('Purge failed', e); }
 }
 
 function initTheme() {
@@ -633,6 +802,20 @@ const refreshStatsFromServer = async () => {
     state.stats.siemSyncCount = stats.total_packets || 0;
     state.stats.highRiskCount = stats.total_alerts || 0;
     state.stats.blockedCount = stats.blocked_count || 0;
+
+    // Hydrate latest pulse if available
+    if (stats.latest_pulse) {
+      const p = stats.latest_pulse;
+      if (DOM.statPps) DOM.statPps.textContent = Math.floor(p.pps || 0);
+      if (DOM.statKbps) DOM.statKbps.textContent = ((p.bps || 0) / 1024).toFixed(1);
+      if (DOM.statCpu) DOM.statCpu.textContent = (p.cpu_load || 0).toFixed(1);
+      if (DOM.statCpuBar) DOM.statCpuBar.style.width = `${p.cpu_load || 0}%`;
+      if (DOM.statRam) DOM.statRam.textContent = (p.ram_usage || 0).toFixed(1);
+      if (DOM.statRamBar) DOM.statRamBar.style.width = `${p.ram_usage || 0}%`;
+      if (DOM.statTemp) DOM.statTemp.textContent = (p.system_temp || 0).toFixed(1);
+      if (DOM.statTempBar) DOM.statTempBar.style.width = `${Math.min(p.system_temp || 0, 100)}%`;
+    }
+
     refreshStats();
   } catch (e) {
     console.error("Stats hydration failed", e);
@@ -655,71 +838,104 @@ function init() {
   fetch('/alerts').then(r => r.json()).then(data => {
     state.alerts = data;
     state.filteredAlerts = data;
-    state.stats.siemSyncCount = data.length; // Initialize SIEM count from historical data
+    state.stats.siemSyncCount = data.length;
     renderAlerts();
     chartManager.updateAll();
     refreshStats();
   });
 
   // SSE for real-time intelligence
-  const sse = new EventSource('/stream');
+  let sse = new EventSource('/stream');
 
+  const setupSSE = (source) => {
+    source.onmessage = (e) => {
+      const alert = JSON.parse(e.data);
+      if (alert.type === 'honeypot_hit') {
+        utils.showToast(`DECOY TRAPPED: ${alert.src_ip}`, 'error');
+        refreshHoneypotView();
+        refreshStats();
+      } else {
+        handleIncomingEvent(alert);
+      }
+    };
+
+    source.onerror = () => {
+      console.warn("SSE Connection lost. Retrying in 3s...");
+      source.close();
+      setTimeout(() => {
+        sse = new EventSource('/stream');
+        setupSSE(sse);
+      }, 3000);
+    };
+  };
+
+  setupSSE(sse);
+
+  refreshWhitelist();
+  if (DOM.addWhitelistBtn) DOM.addWhitelistBtn.onclick = addToWhitelist;
+  if (DOM.whitelistInput) DOM.whitelistInput.onkeypress = (e) => { if (e.key === 'Enter') addToWhitelist(); };
+  if (DOM.rebootBtn) DOM.rebootBtn.onclick = triggerReboot;
+  if (DOM.honeyTestBtn) DOM.honeyTestBtn.onclick = triggerHoneypotTest;
+  if (DOM.honeyBurstBtn) DOM.honeyBurstBtn.onclick = triggerHoneypotBurst;
+}
+
+const handleIncomingEvent = (alert) => {
   // Performance Throttling
-  let lastChartUpdate = 0;
-  let lastStatsUpdate = 0;
-  const UPDATE_THROTTLE = 1000; // Only update charts/stats every 1s under load
+  const UPDATE_THROTTLE = 1000;
+  if (!state.lastChartUpdate) state.lastChartUpdate = 0;
+  if (!state.lastStatsUpdate) state.lastStatsUpdate = 0;
 
-  sse.onmessage = (e) => {
-    const alert = JSON.parse(e.data);
+  // Live Pulse Telemetry Handling
+  if (alert.type === 'pulse') {
+    if (DOM.statPps) DOM.statPps.textContent = Math.floor(alert.pps);
+    if (DOM.statKbps) DOM.statKbps.textContent = (alert.bps / 1024).toFixed(1);
 
-    // Live Pulse Telemetry Handling (V13.1 Fluidity)
-    if (alert.type === 'pulse') {
-      if (DOM.statPps) DOM.statPps.textContent = Math.floor(alert.pps);
-      if (DOM.statKbps) DOM.statKbps.textContent = (alert.bps / 1024).toFixed(1);
-
-      // Fluid Counter: Detection Vector follows Global Packet Count
-      if (alert.global_total) {
-        state.stats.siemSyncCount = alert.global_total;
-        if (DOM.statTotal) {
-          DOM.statTotal.textContent = alert.global_total.toLocaleString();
-        }
-      }
-
-      // Hardware Telemetry (V14.0)
-      if (alert.cpu_load !== undefined) {
-        if (DOM.statCpu) DOM.statCpu.textContent = alert.cpu_load.toFixed(1);
-        if (DOM.statCpuBar) DOM.statCpuBar.style.width = `${alert.cpu_load}%`;
-      }
-      if (alert.ram_usage !== undefined) {
-        if (DOM.statRam) DOM.statRam.textContent = alert.ram_usage.toFixed(1);
-        if (DOM.statRamBar) DOM.statRamBar.style.width = `${alert.ram_usage}%`;
-      }
-      if (alert.system_temp !== undefined) {
-        if (DOM.statTemp) DOM.statTemp.textContent = alert.system_temp.toFixed(1);
-        if (DOM.statTempBar) DOM.statTempBar.style.width = `${Math.min(alert.system_temp, 100)}%`;
-
-        // Heat Stress Visualization
-        if (alert.system_temp > 65) {
-          document.documentElement.style.setProperty('--glow-color', 'rgba(244, 63, 94, 0.2)');
-        } else {
-          document.documentElement.style.setProperty('--glow-color', 'rgba(6, 182, 212, 0.2)');
-        }
-      }
-
-      return; // Pulses don't add to table
+    if (alert.global_total) {
+      state.stats.siemSyncCount = alert.global_total;
+      if (DOM.statTotal) DOM.statTotal.textContent = alert.global_total.toLocaleString();
     }
 
-    state.alerts.push(alert);
-    state.stats.siemSyncCount++;
-    if (state.alerts.length > 2000) state.alerts.shift();
+    if (alert.cpu_load !== undefined) {
+      if (DOM.statCpu) DOM.statCpu.textContent = alert.cpu_load.toFixed(1);
+      if (DOM.statCpuBar) DOM.statCpuBar.style.width = `${alert.cpu_load}%`;
+    }
+    if (alert.ram_usage !== undefined) {
+      if (DOM.statRam) DOM.statRam.textContent = alert.ram_usage.toFixed(1);
+      if (DOM.statRamBar) DOM.statRamBar.style.width = `${alert.ram_usage}%`;
+    }
+    if (alert.system_temp !== undefined) {
+      if (DOM.statTemp) DOM.statTemp.textContent = alert.system_temp.toFixed(1);
+      if (DOM.statTempBar) DOM.statTempBar.style.width = `${Math.min(alert.system_temp, 100)}%`;
+      document.documentElement.style.setProperty('--glow-color', alert.system_temp > 65 ? 'rgba(244, 63, 94, 0.2)' : 'rgba(6, 182, 212, 0.2)');
+    }
 
-    // Incremental UI Update (Prepend row instead of full refresh)
-    const riskVal = alert.risk || 0;
-    const risk = utils.getRiskLevel(riskVal);
-    const row = document.createElement('tr');
-    row.className = 'alert-row border-b border-white/5 cursor-pointer group transition-all duration-300 animate-slide-up';
-    row.onclick = () => openAlertModal(alert);
-    row.innerHTML = `
+    // Concept Drift Update
+    if (alert.drift_status && DOM.driftBadge) {
+      DOM.driftBadge.textContent = alert.drift_status;
+      const isDrifting = alert.drift_status !== 'STABLE';
+      DOM.driftBadge.className = `text-[10px] font-black ${isDrifting ? 'text-rose-500 animate-pulse' : 'text-emerald-400'}`;
+    }
+    return;
+  }
+
+  state.alerts.push(alert);
+  state.stats.siemSyncCount++;
+  if (state.alerts.length > 2000) state.alerts.shift();
+
+  const isBlockedNow = ['BLOCK', 'CRITICAL_BLOCK', 'DECEIVE'].includes(alert.action);
+  if (isBlockedNow) state.stats.blockedIPs.add(alert.src_ip);
+
+  // Incremental UI Update
+  const riskVal = alert.risk || 0;
+  const risk = utils.getRiskLevel(riskVal);
+  const row = document.createElement('tr');
+  row.className = 'alert-row border-b border-white/5 cursor-pointer group transition-all duration-300 animate-slide-up';
+  row.onclick = () => openAlertModal(alert);
+  const isBlocked = ['BLOCK', 'CRITICAL_BLOCK', 'DECEIVE'].includes(alert.action);
+  const isWarning = alert.action === 'RATE_LIMIT';
+  const actionLabel = alert.action === 'RATE_LIMIT' ? 'MONITOR' : (alert.action || 'LOG');
+
+  row.innerHTML = `
       <td class="px-6 py-4 font-mono text-slate-500 text-xs">${utils.formatTime(alert.time)}</td>
       <td class="px-6 py-4">
         <div class="flex flex-col">
@@ -727,47 +943,52 @@ function init() {
           ${alert.spoof_detected ? '<span class="text-[8px] text-rose-500 font-bold uppercase tracking-widest animate-pulse">! SPOOF DETECTED</span>' : ''}
         </div>
       </td>
-      <td class="px-6 py-4"><span class="badge ${risk.class}">${risk.label}</span></td>
-      <td class="px-6 py-4 font-mono text-xs text-slate-400">${(alert.anomaly || 0).toFixed(4)}</td>
-      <td class="px-6 py-4">
-        <div class="w-24 h-1.5 bg-white/5 rounded-full overflow-hidden">
-          <div class="h-full bg-gradient-to-r from-cyan-500 to-blue-500" style="width: ${riskVal}%"></div>
+      <td class="px-6 py-4 text-center">
+        <div class="flex flex-col items-center">
+            <span class="badge ${risk.class}">${risk.label}</span>
+            <span class="text-[9px] font-black text-white/40 mt-1">${Math.round(riskVal)}%</span>
         </div>
       </td>
       <td class="px-6 py-4 text-center">
-        <div class="inline-flex items-center gap-2 ${alert.action === 'BLOCK' ? 'text-rose-500' : 'text-emerald-400'}">
-           <span class="w-1.5 h-1.5 rounded-full ${alert.action === 'BLOCK' ? 'bg-rose-500' : 'bg-emerald-400'}"></span>
-           <span class="text-[10px] font-bold uppercase tracking-widest">${alert.action || 'LOG'}</span>
+         <div class="flex flex-col items-center">
+            <div class="flex items-center gap-1">
+              <span class="font-mono text-[10px] text-cyan-400" title="Calibrated">${(alert.anomaly || 0).toFixed(3)}</span>
+              <span class="text-[8px] text-slate-600">/</span>
+              <span class="font-mono text-[10px] text-slate-500" title="Raw">${(alert.raw_anomaly || 0).toFixed(3)}</span>
+            </div>
+            <div class="w-12 h-1 bg-white/5 rounded-full mt-1 overflow-hidden"><div class="h-full bg-cyan-500" style="width: ${alert.anomaly * 100}%"></div></div>
+         </div>
+      </td>
+      <td class="px-6 py-4 text-center">
+         <div class="flex flex-col items-center">
+            <span class="font-mono text-[10px] text-purple-400">${(alert.payload_score || 0).toFixed(3)}</span>
+            <div class="w-12 h-1 bg-white/5 rounded-full mt-1 overflow-hidden"><div class="h-full bg-purple-500" style="width: ${(alert.payload_score || 0) * 100}%"></div></div>
+         </div>
+      </td>
+      <td class="px-6 py-4 text-center">
+        <div class="inline-flex items-center gap-2 ${isBlocked ? 'text-rose-500' : (isWarning ? 'text-amber-400' : 'text-emerald-400')}">
+           <span class="w-1.5 h-1.5 rounded-full ${isBlocked ? 'bg-rose-500' : (isWarning ? 'bg-amber-400' : 'bg-emerald-400')}"></span>
+            <span class="text-[10px] font-bold uppercase tracking-widest">${actionLabel}</span>
         </div>
       </td>
     `;
 
-    if (DOM.alertsBody) {
-      DOM.alertsBody.prepend(row);
-      // Keep DOM size manageable
-      if (DOM.alertsBody.children.length > 20) {
-        DOM.alertsBody.removeChild(DOM.alertsBody.lastChild);
-      }
-    }
+  if (DOM.alertsBody) {
+    DOM.alertsBody.prepend(row);
+    if (DOM.alertsBody.children.length > 120) DOM.alertsBody.removeChild(DOM.alertsBody.lastChild);
+  }
 
-    // Throttled UI Heavy lifting
-    const now = Date.now();
-    if (now - lastChartUpdate > UPDATE_THROTTLE) {
-      chartManager.updateAll();
-      lastChartUpdate = now;
-    }
-    if (now - lastStatsUpdate > 500) {
-      refreshStats();
-      lastStatsUpdate = now;
-    }
-  };
-
-  refreshWhitelist();
-  if (DOM.addWhitelistBtn) DOM.addWhitelistBtn.onclick = addToWhitelist;
-  if (DOM.whitelistInput) DOM.whitelistInput.onkeypress = (e) => { if (e.key === 'Enter') addToWhitelist(); };
-  if (DOM.rebootBtn) DOM.rebootBtn.onclick = triggerReboot;
-}
+  const now = Date.now();
+  if (now - state.lastChartUpdate > UPDATE_THROTTLE) {
+    chartManager.updateAll();
+    state.lastChartUpdate = now;
+  }
+  if (now - state.lastStatsUpdate > 500) {
+    refreshStats();
+    state.lastStatsUpdate = now;
+  }
+};
 
 document.addEventListener('DOMContentLoaded', init);
-window.switchView = switchView; // Ensure global access for onclick
+window.switchView = switchView;
 window.removeFromWhitelist = removeFromWhitelist;

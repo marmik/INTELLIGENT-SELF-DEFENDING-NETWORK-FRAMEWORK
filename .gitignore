@@ -4,7 +4,23 @@ __pycache__/
 venv/
 env/
 
+# macOS metadata
+.DS_Store
+
+# logs and temp backups
+*.log
+*.tmp
+*.bak
+*.bak.*
+
 # captures, models, runtime data
 captures/
 models/
 alerts.json
+honeypot_interactions.json
+isdnf_siem.log
+dashboard.log
+
+# local/raw datasets (keep out of git due to size)
+dataset/
+training_captures/
