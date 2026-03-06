@@ -22,7 +22,6 @@ isdnf_siem.log
 dashboard.log
 
 # local/raw datasets (keep out of git due to size)
-dataset/
 training_captures/
 
 
